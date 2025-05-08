@@ -22,6 +22,7 @@ const HeroCarosoul = () => {
 		title: product.name,
 		subtitle: product.description,
 		image: product.images[0].image,
+		id: product.id
 	}))
 
 	return (
@@ -45,6 +46,7 @@ const HeroCarosoul = () => {
 								title={item.title}
 								subtitle={item.subtitle}
 								image={item.image}
+								productId={item.id}
 							/>
 						</SwiperSlide>
 					))

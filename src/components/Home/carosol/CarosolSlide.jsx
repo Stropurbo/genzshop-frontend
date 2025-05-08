@@ -1,5 +1,5 @@
-const CarosolSlide = ({title, subtitle, image}) => {
-    return (
+const CarosolSlide = ({ title, subtitle, image, productId }) => {
+	return (
 		<section
 			className="w-full h-[500px] bg-cover flex-col md:flex-row justify-center items-center px-4 md:px-8"
 			style={{
@@ -14,7 +14,12 @@ const CarosolSlide = ({title, subtitle, image}) => {
 				<div className="w-full md:w-1/2 text-center md:text-left mt-8 md:m-0">
 					<h1 className="text-3xl md:text-5xl text-white"> {title} </h1>
 					<p className="py-2 md:py-4 text-lg text-white "> {subtitle} </p>
-					<button className="btn px-2 py-2 md:px-7 md:py-3 rounded-lg">Shop</button>
+					<a
+						href={`/shop/${productId}`}
+						className="btn px-2 py-2 md:px-7 md:py-3 rounded-lg"
+					>
+						Shop
+					</a>
 				</div>
 
 				{/* right image */}
@@ -28,6 +33,6 @@ const CarosolSlide = ({title, subtitle, image}) => {
 			</div>
 		</section>
 	)
-};
+}
 
 export default CarosolSlide;
