@@ -8,9 +8,9 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 	const oderTotal = parseFloat(totalPrice) + shipping + tax
 	const [loading, setLoading] = useState(false)
 
-	const deleteCart = () => {
-		localStorage.removeItem('cartId')
-	}  
+	// const deleteCart = () => {
+	// 	localStorage.removeItem('cartId')
+	// }  
 	const navigate = useNavigate()
 
 	const createOrder = async () => {
@@ -19,7 +19,7 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 			const res = await AuthApiClient.post('/orders/', { cart_id: cartId })
 			if (res.status === 201) {
 				alert('Order Created Successfull')
-				deleteCart()       
+				// deleteCart()       
 				navigate('checkout')
 			}			
 		} catch (error) {
