@@ -109,7 +109,7 @@ const AppRoutes = () => {
 					/> */}
 
 					<Route
-						path="/orders/:orderId"
+						path="orders/:orderId"
 						element={<OrderPage />}
 					/>
 
