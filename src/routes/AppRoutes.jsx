@@ -103,10 +103,10 @@ const AppRoutes = () => {
 						path="cart"
 						element={<Cart />}
 					/>
-					<Route
+					{/* <Route
 						path="orders"
 						element={<OrderPage />}
-					/>
+					/> */}
 
 					<Route
 						path="/orders/:orderId"
