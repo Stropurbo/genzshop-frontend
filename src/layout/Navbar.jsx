@@ -164,8 +164,7 @@ const Navbar = () => {
 				) : (
 					<div className="flex gap-2 space-x-2">
 						<Link
-							to="/login"
-							className="btn btn-primary"
+							to="/login"							
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
