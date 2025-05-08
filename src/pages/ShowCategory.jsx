@@ -5,16 +5,18 @@ const ShowCategory = () => {
 	const [category, setcategory] = useState([])
 	const [isloading, setloading] = useState(false)
 
-	useEffect(() => async () => {
+	useEffect(() => {
+		const fetchCategories = async () => {
 			try {
 				const res = await AuthApiClient.get('/category/')
-				setcategory(res.data.results)				
+				setcategory(res.data.results)
 			} catch (error) {
-				console.error('Failed to fetch products:', error)
+				console.error('Failed to fetch categories:', error)
 			}
-		},
-		[],
-	)
+		}
+
+		fetchCategories()
+	}, [])
 
 	const deleteProduct = async (id) => {
 		setloading(true)
