@@ -21,7 +21,7 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 			if (res.status === 201) {
 				alert('Order Created Successfull')
 				deleteCart()      
-				navigate('/orders')  
+				navigate('orders')  
         // window.location.reload();
 			}			
 		} catch (error) {
