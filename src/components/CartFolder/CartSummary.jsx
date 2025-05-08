@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import AuthApiClient from '../../services/auth-api-client'
+import { useNavigate } from 'react-router'
 
 const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 	const tax = parseFloat(totalPrice) * 0.1
 	const shipping = itemCount === 0 || parseFloat(totalPrice) > 100 ? 0 : 10
 	const oderTotal = parseFloat(totalPrice) + shipping + tax
 	const [loading, setLoading] = useState(false)
+	const navigate = useNavigate()
 
 	const deleteCart = () => {
 		localStorage.removeItem('cartId')
@@ -18,8 +20,9 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 
 			if (res.status === 201) {
 				alert('Order Created Successfull')
-				deleteCart()        
-        window.location.reload();
+				deleteCart()      
+				navigate('/orders')  
+        // window.location.reload();
 			}			
 		} catch (error) {
 			console.log('Order create error:', error.response?.data || error.message)
