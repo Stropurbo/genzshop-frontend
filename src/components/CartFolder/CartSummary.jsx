@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import AuthApiClient from '../../services/auth-api-client'
-import { useNavigate } from 'react-router'
 
 const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 	const tax = parseFloat(totalPrice) * 0.1
@@ -8,19 +7,19 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 	const oderTotal = parseFloat(totalPrice) + shipping + tax
 	const [loading, setLoading] = useState(false)
 
-	// const deleteCart = () => {
-	// 	localStorage.removeItem('cartId')
-	// }  
-	const navigate = useNavigate()
+	const deleteCart = () => {
+		localStorage.removeItem('cartId')
+	}  
 
 	const createOrder = async () => {
 		setLoading(true)
-		try {		
+		try {			
 			const res = await AuthApiClient.post('/orders/', { cart_id: cartId })
+
 			if (res.status === 201) {
 				alert('Order Created Successfull')
-				// deleteCart()       
-				navigate('/checkout')
+				deleteCart()        
+        window.location.reload();
 			}			
 		} catch (error) {
 			console.log('Order create error:', error.response?.data || error.message)
@@ -68,8 +67,8 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 						{loading ? (
 							<span className="loading loading-spinner loading-sm"></span>
 						) : (
-							'Buy Now'
-						)}	
+							'Proceed to Checkout'
+						)}
 					</button>
 				</div>
 			</div>
