@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import AuthApiClient from '../../services/auth-api-client'
 import { useNavigate } from 'react-router'
+import AuthApiClient from '../services/auth-api-client'  
 
 const CheckoutForm = () => {
 	const [formData, setFormData] = useState({
