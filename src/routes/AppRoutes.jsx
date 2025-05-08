@@ -24,6 +24,7 @@ import AddCategory from '../pages/AddCategory'
 import Reviews from '../pages/Reviews'
 import UserList from '../pages/UserList'
 import Profile from '../pages/Profile'
+import CheckoutForm from '../pages/CheckoutForm'
 
 const AppRoutes = () => {
 	return (
@@ -106,6 +107,12 @@ const AppRoutes = () => {
 						path="orders"
 						element={<OrderPage />}
 					/>
+
+					<Route
+						path="/orders/:orderId"
+						element={<OrderPage />}
+					/>
+
 					<Route
 						path="payment/success"
 						element={<PaymentSuccess />}
@@ -136,6 +143,10 @@ const AppRoutes = () => {
 					<Route
 						path="admin/users"
 						element={<UserList />}
+					/>
+					<Route
+						path="checkout"
+						element={<CheckoutForm />}
 					/>
 				</Route>
 			</Routes>
