@@ -10,7 +10,6 @@ import Dashboard from '../pages/Dashboard'
 import PrivateRoute from '../components/PrivateRoute'
 import ActivateAccount from '../components/Registration/ActivateAccount'
 import DashboardLayout from '../layout/DashboardLayout'
-import Profile from '../pages/profile'
 import ForgetPassPage from '../pages/ForgetPassPage'
 import ResetPasswordConfirmPage from '../pages/ResetPasswordConfirmPage'
 import ResendActivation from '../pages/ResendActivation'
@@ -24,6 +23,7 @@ import ShowCategory from '../pages/ShowCategory'
 import AddCategory from '../pages/AddCategory'
 import Reviews from '../pages/Reviews'
 import UserList from '../pages/UserList'
+import Profile from '../pages/profile'
 
 const AppRoutes = () => {
 	return (
