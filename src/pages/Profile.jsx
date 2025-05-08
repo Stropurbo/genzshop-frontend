@@ -12,8 +12,11 @@ const Profile = () => {
     const {register, watch, setValue, handleSubmit,formState:{errors, isSubmitting}} = useForm()
 
     useEffect(() => {
-        Object.keys(user).forEach((key) => setValue(key ,user[key]))
-    }, [user, setValue])
+		if (user && typeof user === 'object') {
+			Object.keys(user).forEach((key) => setValue(key, user[key]))
+		}
+	}, [user, setValue])
+
 
     const onSubmit = async(data) => {
         try {
@@ -41,7 +44,7 @@ const Profile = () => {
 
 
     return (
-        <div className='card w-full max-w-2xl mx-auto bg-base-100 shadow-xl' >
+        <div className='card w-full max-w-2xl mx-auto bg-base-100 shadow-xl m-8' >
             <div className='card-body'>
                 {errMsg && <ErrorAlert errormessage={errMsg} />}
                 <h2 className="card-title text-2xl mb-4">Profile Information</h2>

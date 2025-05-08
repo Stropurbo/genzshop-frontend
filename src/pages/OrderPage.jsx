@@ -32,17 +32,23 @@ const OrderPage = () => {
   };
 
   return (
-    <div className="container mx-auto py-5 px-5">
-      <h1 className="text-2xl font-bold mb-4">Order Details</h1>
-      {Array.isArray(orders) && orders.length > 0 ? (
-        orders.map((order) => (
-          <OrderCart key={order.id} order={order} onCancel={handleCancelOrder} />
-        ))
-      ) : (
-        <p>No orders found.</p>
-      )}
-    </div>
-  );
+		<div className="container mx-auto py-5 px-5">
+			<h1 className="text-2xl font-bold mb-4">Order Details</h1>
+			{Array.isArray(orders) && orders.length > 0 ? (
+				orders.map((order) => (
+					<OrderCart
+						key={order.id}
+						order={order}
+						onCancel={handleCancelOrder}
+					/>
+				))
+			) : (
+				<p className='flex justify-center items-center'>
+					<span className="loading loading-spinner loading-lg"></span>
+				</p>
+			)}
+		</div>
+  )
   
 };
 export default OrderPage;

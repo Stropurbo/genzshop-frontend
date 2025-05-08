@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const AuthApiClient = axios.create({
-	baseURL: 'https://sci-mart.vercel.app/api/v1',
+	baseURL: 'https://genz-shop.vercel.app/api/v1',
 	// baseURL: "http://127.0.0.1:8000/api/v1/",
 })
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaMinus, FaPlus,FaCheck , FaShoppingCart } from 'react-icons/fa';
 import useCartContext from '../../hooks/useCartContext';
 
@@ -37,19 +37,25 @@ const AddtoCartButton = ({product}) => {
         try {
             await AddCartItem(product.id, quantity);
             setIsAdded(true);
-            if (window.toast) {  
-                window.toast.success(`${product.name} added to cart!`);
-              }
+            
         } catch (error) {
-            console.error("Error adding item to cart:", error);
+            console.error(error);
             setIsAdded(false); 
-            alert("There was an issue adding the item to your cart. Please try again later.");
+            
         } finally {
             setIsAdding(false);
         }
     };
+
+    useEffect(() => {
+		if (isAdded) {
+			const timer = setTimeout(() => setIsAdded(false), 2000)
+			return () => clearTimeout(timer)
+		}
+	}, [isAdded])
     
     if (!product || typeof product.stock !== "number") return null;
+
     return (
         <div className="space-y-4">
         <div className="join">

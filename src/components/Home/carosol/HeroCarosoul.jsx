@@ -1,61 +1,62 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import 'swiper/css/navigation'
 
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import CarosolSlide from './CarosolSlide';
-import boot from '../../../assets/image/boot.png'
-import bag from '../../../assets/image/bag.png'
+import { Autoplay, Pagination, Navigation } from 'swiper/modules'
+import CarosolSlide from './CarosolSlide'
+import { useEffect, useState } from 'react'
+import apiClient from '../../../services/api-client'
 
 const HeroCarosoul = () => {
-    const slides = [
-        {
-            title : "New Travel Boots",
-            subtitle: "New Collection Boots for man travel.",
-            image: boot,
-        },
-        {
-            title: "Stylish Backpack",
-            subtitle: "Trendy and Comfortable for All Ages.",
-            image: bag,
-          },
-        {
-            title: "Hollyland Lark M2 Wireless Lavalier Microphone",
-            subtitle: "LARK M2 is a lightweight wireless microphone weighing only 9 grams.",
-            image: 'https://i.ibb.co.com/0pTNy3VG/71-MTZ6-Oqb-L-AC-SL1500-removebg-preview.png',
-          },
-    ]
+	const [product, setProduct] = useState([])
 
-  return (
-    <>
-      <Swiper
-        spaceBetween={30}
-        centeredSlides={true}
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-        }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={false}
-        modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper"
-      >
-        {slides.map(
-            (item, index) => (
-                <SwiperSlide key={index}> 
-                <CarosolSlide title ={item.title} subtitle={item.subtitle} image={item.image} />
-              </SwiperSlide>
-    
-            )       
-        )}
+	useEffect(() => {
+		apiClient
+			.get('/products')
+			.then((res) => setProduct(res.data.results))
+			.catch((error) => console.log(error))
+	}, [])
 
-       
-     
-      </Swiper>
-    </>
-  );
+	const slides = product.map((product) => ({
+		title: product.name,
+		subtitle: product.description,
+		image: product.image,
+	}))
+
+	return (
+		<>
+			<Swiper
+				spaceBetween={30}
+				centeredSlides={true}
+				autoplay={{
+					delay: 2500,
+					disableOnInteraction: false,
+				}}
+				pagination={false}
+				navigation={false}
+				modules={[Autoplay, Pagination, Navigation]}
+				className="mySwiper"
+			>
+				{slides.length > 0 ? (
+					slides.map((item, index) => (
+						<SwiperSlide key={index}>
+							<CarosolSlide
+								title={item.title}
+								subtitle={item.subtitle}
+								image={item.image}
+							/>
+						</SwiperSlide>
+					))
+				) : (
+					<SwiperSlide>
+						<div className="text-center py-20 font-semibold text-gray-500">
+							Loading Banner...
+						</div>
+					</SwiperSlide>
+				)}
+			</Swiper>
+		</>
+	)
 }
-export default HeroCarosoul;
+export default HeroCarosoul

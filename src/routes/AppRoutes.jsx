@@ -19,12 +19,16 @@ import Cart from '../pages/Cart'
 import OrderPage from '../pages/OrderPage'
 import PaymentSuccess from '../pages/PaymentSuccess'
 import AddProduct from '../pages/AddProduct'
+import AdminProduct from '../pages/AdminProduct'
+import ShowCategory from '../pages/ShowCategory'
+import AddCategory from '../pages/AddCategory'
+import Reviews from '../pages/Reviews'
+import UserList from '../pages/UserList'
 
 const AppRoutes = () => {
 	return (
 		<div className="overflow-hidden">
 			<Routes>
-				{/* Public Routes  */}
 				<Route element={<MainLayout />}>
 					<Route
 						path="/"
@@ -66,6 +70,10 @@ const AppRoutes = () => {
 						path="shop/:id"
 						element={<ProductDetail />}
 					/>
+					<Route
+						path="profile/"
+						element={<Profile />}
+					/>
 				</Route>
 
 				{/* private routes */}
@@ -81,6 +89,7 @@ const AppRoutes = () => {
 						index
 						element={<Dashboard />}
 					/>
+
 					<Route
 						path="profile"
 						element={<Profile />}
@@ -103,8 +112,30 @@ const AppRoutes = () => {
 					/>
 
 					<Route
-						path="product/add"
+						path="products/add"
 						element={<AddProduct />}
+					/>
+
+					<Route
+						path="admin/products"
+						element={<AdminProduct />}
+					/>
+					<Route
+						path="admin/categroy"
+						element={<ShowCategory />}
+					/>
+					<Route
+						path="add/categroy"
+						element={<AddCategory />}
+					/>
+
+					<Route
+						path="admin/review"
+						element={<Reviews />}
+					/>
+					<Route
+						path="admin/users"
+						element={<UserList />}
 					/>
 				</Route>
 			</Routes>

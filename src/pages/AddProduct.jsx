@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import apiClient from '../services/api-client'
 import AuthApiClient from '../services/auth-api-client'
+import { Navigate, useNavigate } from 'react-router'
 
 const AddProduct = () => {
 	const {
@@ -16,33 +16,46 @@ const AddProduct = () => {
 	const [images, setImages] = useState([])
 	const [loading, setLoading] = useState(false)
 
+	const navigate = useNavigate();
+
 	useEffect(() => {
-		apiClient.get('/category/').then((res) => {
-			console.log(res.data)
+		AuthApiClient.get('/category/').then((res) => {			
 			setCategory(res.data.results)
 		})
 	}, [])
 
 	const handleProductAdd = async (data) => {
+		setLoading(true)
 		try {
-			const res = await AuthApiClient.post('/products/', data)
+			const stringToInt = {
+				...data,
+				price: parseFloat(data.price),
+				stock: parseInt(data.stock),
+				category: parseInt(data.category),
+			}
+
+			const res = await AuthApiClient.post('/products/', stringToInt)
 			setProductId(res.data.id)
-			console.log(res.data.id)
 		} catch (errors) {
-			console.log(errors)
+			console.log('Product add error:', errors.response?.data || errors.message)
+		}finally{
+			setLoading(false)
 		}
 	}
 
 	const handleImageChange = (e) => {
 		const files = Array.from(e.target.files)
-		console.log(files)
 		setImages(files)
 		setPreviewImages(files.map((file) => URL.createObjectURL(file)))
 	}
 
 	const handleUpload = async () => {
 		setLoading(true)
-		if (!images.length) return alert('Please Select image')
+		if (!images.length) {
+			alert('Please Select image')
+			setLoading(false)			
+		}
+
 		try {
 			for (const image of images) {
 				const formData = new FormData()
@@ -51,18 +64,11 @@ const AddProduct = () => {
 			}
 			alert('Images uploaded!')
 			setLoading(false)
+			navigate('/dashboard')
 		} catch (errors) {
 			console.log(errors)
 		}
 	}
-
-	// const handleUpload = () => {
-	// 	setLoading(true)
-	// 	setTimeout(() => {
-	// 		setLoading(false)
-	// 		alert('Images uploaded!')
-	// 	}, 2000)
-	// }
 
 	return (
 		<div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
@@ -153,8 +159,9 @@ const AddProduct = () => {
 					<button
 						type="submit"
 						className="btn btn-primary w-full"
+						disabled={loading}
 					>
-						Add Product
+						{loading ? 'Adding...' : 'Add Product'}
 					</button>
 				</form>
 			) : (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import apiClient from "../services/api-client";
 
-const useFetchProduct = (
+const useFetchProduct = ( 
     currentpage, 
     priceRange, 
     selectedCategory,
