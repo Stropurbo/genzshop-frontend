@@ -5,8 +5,8 @@ const AdminProduct = () => {
 	const [product, setProdcut] = useState([])
 	const [isloading, setloading] = useState(false)
 
-	useEffect(
-		() => async () => {
+	useEffect(() => {
+		const fetchProducts = async () => {
 			try {
 				const res = await AuthApiClient.get('/products/')
 				setProdcut(res.data.results)
@@ -14,9 +14,11 @@ const AdminProduct = () => {
 			} catch (error) {
 				console.error('Failed to fetch products:', error)
 			}
-		},
-		[],
-	)
+		}
+
+		fetchProducts()
+	}, [])
+
 
 	const deleteProduct = async (id) => {
 		setloading(true)
