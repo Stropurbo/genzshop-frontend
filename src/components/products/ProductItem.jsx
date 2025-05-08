@@ -4,7 +4,7 @@ const ProductItem = ({ product }) => {
 	return (
 		<a href={`/shop/${product.id}`}>
 			<div className="card bg-base-100 w-96 shadow-sm">
-				<figure className="px-10 pt-10">
+				<figure className="px-10 pt-10 h-[200px]">
 					<img
 						src={
 							product.images.length > 0 ? product.images[0].image : default_image
