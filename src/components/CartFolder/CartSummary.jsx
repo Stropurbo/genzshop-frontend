@@ -20,7 +20,7 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 			if (res.status === 201) {
 				alert('Order Created Successfull')
 				// deleteCart()       
-				navigate('checkout')
+				navigate('/checkout')
 			}			
 		} catch (error) {
 			console.log('Order create error:', error.response?.data || error.message)
