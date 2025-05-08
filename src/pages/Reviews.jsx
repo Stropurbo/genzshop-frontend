@@ -5,8 +5,8 @@ const Reviews = () => {
 	const [product, setProduct] = useState([])
 	const [isloading, setloading] = useState(false)
 
-	useEffect(
-		() => async () => {
+	useEffect(() => {
+		const fetchProductReviews = async () => {
 			setloading(true)
 			try {
 				const res = await AuthApiClient.get(`/products/`)
@@ -15,10 +15,10 @@ const Reviews = () => {
 				const onlyReviewProduct = await Promise.all(
 					productList.map(async (product) => {
 						try {
-							const reviewProduct = await AuthApiClient.get(
+							const reviewRes = await AuthApiClient.get(
 								`/products/${product.id}/review`,
 							)
-							return { ...product, reviews: reviewProduct.data.results }
+							return { ...product, reviews: reviewRes.data.results }
 						} catch {
 							return { ...product, reviews: [] }
 						}
@@ -31,10 +31,10 @@ const Reviews = () => {
 			} finally {
 				setloading(false)
 			}
-		},
+		}
 
-		[],
-	)
+		fetchProductReviews()
+	}, [])
 
 
 	if (isloading) return <p className="text-center">Loading...</p>
