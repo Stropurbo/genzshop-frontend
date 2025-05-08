@@ -44,7 +44,7 @@ const HeroCarosoul = () => {
 							<CarosolSlide
 								title={item.title}
 								subtitle={item.subtitle}
-								image={item.image}
+								image={item.images}
 							/>
 						</SwiperSlide>
 					))
