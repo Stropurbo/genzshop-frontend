@@ -30,7 +30,7 @@ const Sidebar = () => {
 		{ to: '/dashboard/cart', icon: FiShoppingBag, label: 'Cart' },
 		{ to: '/dashboard/orders', icon: FiShoppingCart, label: 'Order' },
 		{ to: '/dashboard/admin/review', icon: FiStar, label: 'Reviews' },
-		{ to: '/dashboard/admin/users', icon: FiUsers, label: 'Users' },
+		{ to: '/dashboard/admin/users', icon: FiUsers, label: 'Users' },		
 	]
 
 	const menuItems = user.is_staff ? adminMenu : customerMenu

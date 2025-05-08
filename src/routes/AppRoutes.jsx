@@ -145,7 +145,7 @@ const AppRoutes = () => {
 						element={<UserList />}
 					/>
 					<Route
-						path="checkout"
+						path="cart/checkout"
 						element={<CheckoutForm />}
 					/>
 				</Route>
