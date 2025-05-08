@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { Routes, Route } from 'react-router'
 import MainLayout from '../layout/MainLayout'
 import Home from '../pages/Home'
 import AllProduct from '../components/products/AllProduct'
@@ -23,7 +23,7 @@ import ShowCategory from '../pages/ShowCategory'
 import AddCategory from '../pages/AddCategory'
 import Reviews from '../pages/Reviews'
 import UserList from '../pages/UserList'
-import Profile from '../pages/profile'
+import Profile from '../pages/Profile'
 
 const AppRoutes = () => {
 	return (
