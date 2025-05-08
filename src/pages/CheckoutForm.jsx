@@ -18,7 +18,8 @@ const CheckoutForm = () => {
 		})
 	}
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (e) => {
+		e.preventDefault() 
 		setLoading(true)
 
 		const cartId = localStorage.getItem('cartId')
@@ -40,7 +41,10 @@ const CheckoutForm = () => {
 			if (res.status === 201) {
 				alert('Order placed successfully!')
 				localStorage.removeItem('cartId')
-				navigate('/orders', {
+
+				const orderId = res.data.id 
+			
+				navigate(`/dashboard/orders/${orderId}`, {
 					state: {
 						userData: formData,
 					},
@@ -53,6 +57,8 @@ const CheckoutForm = () => {
 			setLoading(false)
 		}
 	}
+
+		
 
 	return (
 		<div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg mt-10">
