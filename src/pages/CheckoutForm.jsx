@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
-import AuthApiClient from '../services/auth-api-client'  
+import AuthApiClient from '../services/auth-api-client'
 
 const CheckoutForm = () => {
 	const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ const CheckoutForm = () => {
 	}
 
 	const handleSubmit = async (e) => {
-		e.preventDefault() 
+		e.preventDefault()
 		setLoading(true)
 
 		const cartId = localStorage.getItem('cartId')
@@ -42,8 +42,8 @@ const CheckoutForm = () => {
 				alert('Order placed successfully!')
 				localStorage.removeItem('cartId')
 
-				const orderId = res.data.id 
-			
+				const orderId = res.data.id
+
 				navigate(`/dashboard/orders/${orderId}`, {
 					state: {
 						userData: formData,
@@ -51,14 +51,12 @@ const CheckoutForm = () => {
 				})
 			}
 		} catch (error) {
-			console.error(error)
+			console.error('ORDER ERROR:', error?.response?.data || error.message)
 			alert('Order failed. Please try again.')
 		} finally {
 			setLoading(false)
 		}
 	}
-
-		
 
 	return (
 		<div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-lg mt-10">
