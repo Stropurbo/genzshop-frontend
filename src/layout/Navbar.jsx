@@ -74,7 +74,7 @@ const Navbar = () => {
 					</svg>
 				</button> */}
 
-				<BiHeart />
+				<BiHeart className="h-5 w-5" />
 
 				{user ? (
 					<div className="flex">
