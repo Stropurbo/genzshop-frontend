@@ -11,25 +11,24 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 
 	const deleteCart = () => {
 		localStorage.removeItem('cartId')
-	}  
+	}
 
 	const createOrder = async () => {
 		setLoading(true)
-		try {			
+		try {
 			const res = await AuthApiClient.post('/orders/', { cart_id: cartId })
 
 			if (res.status === 201) {
 				alert('Order Created Successfull')
-				deleteCart()      
-				navigate('orders')  
-        // window.location.reload();
-			}			
+				deleteCart()
+
+				// window.location.reload();
+			}
 		} catch (error) {
 			console.log('Order create error:', error.response?.data || error.message)
-      
-		}finally{
-      setLoading(false)
-    }
+		} finally {
+			setLoading(false)
+		}
 	}
 
 	return (
