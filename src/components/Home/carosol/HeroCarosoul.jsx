@@ -21,7 +21,7 @@ const HeroCarosoul = () => {
 	const slides = product.map((product) => ({
 		title: product.name,
 		subtitle: product.description,
-		image: product.images.image,
+		image: product.images[0].image,
 	}))
 
 	return (
@@ -44,7 +44,7 @@ const HeroCarosoul = () => {
 							<CarosolSlide
 								title={item.title}
 								subtitle={item.subtitle}
-								image={item.images}
+								image={item.image}
 							/>
 						</SwiperSlide>
 					))
