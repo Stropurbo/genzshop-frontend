@@ -2,56 +2,69 @@ import DiscountTimer from './DiscountTimer'
 
 const DiscountSection = () => {
 	return (
-		<section
-			className="w-full h-[500px] bg-cover bg-center bg-no-repeat flex flex-col md:flex-row 
-        justify-center items-center"
-			style={{
-				backgroundImage: `url('https://i.ibb.co.com/rRKFP7d7/sale-up-to-Off.png')`,
-			}}
-		>
+		<div>
 			<div
-				className="flex flex-col md:flex-row justify-between max-w-6xl w-full 
-            items-center text-center h-full px-5"
+				className="w-full h-[500px] bg-cover bg-center bg-no-repeat flex flex-col md:flex-row 
+        justify-center items-center"
+				style={{
+					backgroundImage: `url('https://i.ibb.co.com/rRKFP7d7/sale-up-to-Off.png')`,
+				}}
 			>
-				<div className="w-full text-center md:text-left mt-8 md:m-0">
-					<h1 className="text-xl md:text-2xl text-black text-center">
-						{' '}
-						SPECIAL OFFER{' '}
-					</h1>
-					<h1
-						className="text-xl md:text-4xl text-black text-center font-bold"
-						style={{
-							WebkitTextStroke: '1px white',
-							textStroke: '1px white',
-						}}
-					>
-						BLACK FRIDAY
-					</h1>
-					<p
-						className="text-xl md:text-2xl text-white font-bold text-center"
-						style={{
-							WebkitTextStroke: '1px black',
-							textStroke: '1px black',
-						}}
-					>
-						DISCOUNT UP TO 50%
-					</p>
-
-					<DiscountTimer />
-
-					{/* <img className='w-full max-w-xs sm:max-w-sm md:max-w-md' src="" alt="product image" /> */}
-
-					<div className="flex justify-center py-5">
-						<a
-							href="/all-product"
-							className="btn btn-neutral"
+				<div
+					className="flex flex-col md:flex-row justify-between max-w-6xl w-full 
+            items-center text-center h-full px-5"
+				>
+					<div className="w-full text-center md:text-left mt-8 md:m-0">
+						<h1 className="text-xl md:text-2xl text-black text-center">
+							{' '}
+							SPECIAL OFFER{' '}
+						</h1>
+						<h1
+							className="text-xl md:text-4xl text-black text-center font-bold"
+							style={{
+								WebkitTextStroke: '1px white',
+								textStroke: '1px white',
+							}}
 						>
-							Buy Now
-						</a>
+							BLACK FRIDAY
+						</h1>
+						<p
+							className="text-xl md:text-2xl text-white font-bold text-center"
+							style={{
+								WebkitTextStroke: '1px black',
+								textStroke: '1px black',
+							}}
+						>
+							DISCOUNT UP TO 50%
+						</p>
+
+						<DiscountTimer />
+
+						{/* <img className='w-full max-w-xs sm:max-w-sm md:max-w-md' src="" alt="product image" /> */}
+
+						<div className="flex justify-center py-5">
+							<a
+								href="/all-product"
+								className="btn btn-neutral"
+							>
+								Buy Now
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</section>
+
+			<div
+				className="w-full bg-cover bg-center bg-no-repeat flex flex-col md:flex-row 
+			justify-center items-center"
+				style={{
+					backgroundImage: `url('https://i.ibb.co.com/rRKFP7d7/sale-up-to-Off.png')`,
+				}}
+			>
+				<p>SUMMER SALE</p>
+				<button className='btn btn-primary'>BROWSER NOW</button>
+			</div>
+		</div>
 	)
 }
 
