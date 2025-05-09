@@ -81,7 +81,7 @@ const Product = () => {
 				<h1 className="font-bold text-xl md:text-4xl">Weekly Featured Products</h1>
 				<Link to="/all-product">Explore</Link>
 			</div>
-			<div>
+			<div className='mt-5 mb-5'>
 				{!isloading && !error && product.length > 0 && (
 					<Swiper
 						modules={[Autoplay, Pagination, Navigation]}
