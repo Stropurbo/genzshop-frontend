@@ -4,7 +4,7 @@ const DiscountSection = () => {
 	return (
 		<div>
 			<div
-				className="w-full bg-cover bg-center bg-no-repeat flex flex-col md:flex-row 
+				className="w-full h-[500px] bg-cover bg-center bg-no-repeat flex flex-col md:flex-row 
         justify-center items-center"
 				style={{
 					backgroundImage: `url('https://i.ibb.co.com/rRKFP7d7/sale-up-to-Off.png')`,
@@ -54,15 +54,7 @@ const DiscountSection = () => {
 				</div>
 			</div>
 
-			<div
-				className="w-full h-[100px] bg-cover bg-center bg-no-repeat"
-				style={{
-					backgroundImage: `url('https://i.ibb.co.com/rRKFP7d7/sale-up-to-Off.png')`,
-				}}
-			>
-				<p>SUMMER SALE</p>
-				<button className="btn btn-primary">BROWSER NOW</button>
-			</div>
+			
 		</div>
 	)
 }
