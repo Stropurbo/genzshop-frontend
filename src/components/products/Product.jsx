@@ -26,7 +26,7 @@ const Product = () => {
 	return (
 		<section className="mx-auto py-15">
 			<div className="flex justify-between px-5 md:px-8 items-center">
-				<h1 className="font-bold text-xl md:text-4xl">Trending Product</h1>
+				<h1 className="font-bold text-xl md:text-4xl">BestSellers</h1>
 				<Link to="/all-product">Explore</Link>
 			</div>
 

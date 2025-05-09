@@ -17,9 +17,9 @@ const ProductItem = ({ product }) => {
 					<h2 className="card-title">{product.name}</h2>
 					<p className="line-clamp-1">{product.description}</p>
 					<p className="font-bold">{product.price} Tk</p>
-					<div className="card-actions">
+					{/* <div className="card-actions">
 						<button className="btn btn-primary">Buy Now</button>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</a>
