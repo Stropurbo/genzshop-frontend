@@ -10,7 +10,7 @@ const ProductItem = ({ product }) => {
 							product.images.length > 0 ? product.images[0].image : default_image
 						}
 						alt={product.name}
-						className="rounded-xl object-contain"
+						className="rounded-xl max-h-full object-contain"
 					/>
 				</figure>
 				<div className="card-body items-center text-center">
