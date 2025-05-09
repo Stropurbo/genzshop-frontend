@@ -81,7 +81,7 @@ const Product = () => {
 
 			<div className="flex justify-between px-5 md:px-8 items-center">
 				<h1 className="font-bold text-xl md:text-4xl">Weekly Featured Products</h1>
-				<a href="/all-product/?category_id=2">Explore</a>
+				<Link to="/all-product">Explore</Link>
 			</div>
 			<div className="mt-5 mb-5">
 				{!isloading && !error && fashionProduct.length > 0 && (
