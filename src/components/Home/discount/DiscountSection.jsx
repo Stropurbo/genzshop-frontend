@@ -21,8 +21,8 @@ const DiscountSection = () => {
 					<h1
 						className="text-xl md:text-4xl text-black text-center font-bold"
 						style={{
-							WebkitTextStroke: '2px white',
-							textStroke: '2px white',
+							WebkitTextStroke: '1px white',
+							textStroke: '1px white',
 						}}
 					>
 						BLACK FRIDAY
