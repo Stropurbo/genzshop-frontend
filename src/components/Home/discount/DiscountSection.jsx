@@ -14,12 +14,12 @@ const DiscountSection = () => {
             items-center text-center h-full px-5"
 			>
 				<div className="w-full text-center md:text-left mt-8 md:m-0">
-					<h1 className="text-3xl md:text-5xl text-black text-center">
+					<h1 className="text-xl md:text-2xl text-black text-center">
 						{' '}
 						SPECIAL OFFER{' '}
 					</h1>
 					<h1
-						className="text-3xl md:text-7xl text-black text-center font-bold"
+						className="text-xl md:text-2xl text-gray-600 text-center font-bold"
 						style={{
 							WebkitTextStroke: '2px white',
 							textStroke: '2px white',
@@ -28,7 +28,7 @@ const DiscountSection = () => {
 						BLACK FRIDAY
 					</h1>
 					<p
-						className="text-3xl md:text-4xl text-white font-bold text-center"
+						className="text-xl md:text-2xl text-white font-bold text-center"
 						style={{
 							WebkitTextStroke: '1px black',
 							textStroke: '1px black',
