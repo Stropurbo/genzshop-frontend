@@ -19,7 +19,7 @@ const DiscountSection = () => {
 						SPECIAL OFFER{' '}
 					</h1>
 					<h1
-						className="text-xl md:text-2xl text-gray-600 text-center font-bold"
+						className="text-xl md:text-4xl text-gray-600 text-center font-bold"
 						style={{
 							WebkitTextStroke: '2px white',
 							textStroke: '2px white',
