@@ -4,13 +4,13 @@ const ProductItem = ({ product }) => {
 	return (
 		<a href={`/shop/${product.id}`}>
 			<div className="card bg-base-100 w-96 shadow-sm group hover:bg-gray-100">
-				<figure className="px-10 pt-10 h-[200px]">
+				<figure className="px-10 pt-10 h-[200px] flex items-center justify-center">
 					<img
 						src={
 							product.images.length > 0 ? product.images[0].image : default_image
 						}
 						alt={product.name}
-						className="rounded-xl"
+						className="rounded-xl object-contain"
 					/>
 				</figure>
 				<div className="card-body items-center text-center">
