@@ -23,9 +23,7 @@ const Product = () => {
 			.finally(() => setLoading(false))
 	}, [])
 
-	const fashionProduct = product.filter(
-		(p) => p.category.id == 2
-	)
+	const fashionProduct = product.filter((p) => p.category == 2)
 
 	return (
 		<div>
