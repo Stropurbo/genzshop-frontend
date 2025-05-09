@@ -23,6 +23,10 @@ const Product = () => {
 			.finally(() => setLoading(false))
 	}, [])
 
+	const fashionProduct = product.filter(
+		(p) => p.category.id == 2
+	)
+
 	return (
 		<div>
 			<div className="mx-auto py-15">
@@ -81,8 +85,8 @@ const Product = () => {
 				<h1 className="font-bold text-xl md:text-4xl">Weekly Featured Products</h1>
 				<Link to="/all-product">Explore</Link>
 			</div>
-			<div className='mt-5 mb-5'>
-				{!isloading && !error && product.length > 0 && (
+			<div className="mt-5 mb-5">
+				{!isloading && !error && fashionProduct.length > 0 && (
 					<Swiper
 						modules={[Autoplay, Pagination, Navigation]}
 						spaceBetween={2}
@@ -102,7 +106,7 @@ const Product = () => {
 							1024: { slidesPerView: 3 },
 						}}
 					>
-						{product.map((product) => (
+						{fashionProduct.map((product) => (
 							<SwiperSlide
 								key={product.id}
 								className="flex justify-center"
