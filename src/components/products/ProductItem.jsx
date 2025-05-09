@@ -13,10 +13,11 @@ const ProductItem = ({ product }) => {
 						className="rounded-xl"
 					/>
 				</figure>
-				<div className="card-body items-center text-center hover:shadow-xl transition duration-300">
+				<div className="card-body items-center text-center hover:shadow-xl transition ">
 					<h2 className="card-title">{product.name}</h2>
 					<p className="line-clamp-1">{product.description}</p>
 					<p className="font-bold"> ${product.price} </p>
+
 					<div className="card-actions mt-4 opacity-0 group-hover:opacity-100 transition duration-300">
 						<button className="btn btn-primary">Buy Now</button>
 					</div>
