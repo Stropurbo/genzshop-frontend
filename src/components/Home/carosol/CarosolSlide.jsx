@@ -1,10 +1,9 @@
-import Category from "../category/Category";
+import DiscountSection from "../discount/DiscountSection";
 
 const CarosolSlide = ({ title, subtitle, image, productId }) => {
 
 	return (
 		<div className="flex justify-between">
-
 			<div
 				className="w-full h-[500px] bg-cover flex-col md:flex-row justify-center items-center px-4 md:px-8"
 				style={{
@@ -39,7 +38,7 @@ const CarosolSlide = ({ title, subtitle, image, productId }) => {
 			</div>
 
 			<div>
-				<Category />
+				<DiscountSection />
 			</div>
 		</div>
 	)
