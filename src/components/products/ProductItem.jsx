@@ -3,7 +3,7 @@ import default_image from '../../assets/default_product.jpg'
 const ProductItem = ({ product }) => {
 	return (
 		<a href={`/shop/${product.id}`}>
-			<div className="card bg-base-100 w-96 shadow-sm group">
+			<div className="card bg-base-100 w-96 shadow-sm group hover:bg-gray-100">
 				<figure className="px-10 pt-10 h-[200px]">
 					<img
 						src={
