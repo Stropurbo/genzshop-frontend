@@ -34,7 +34,7 @@ const DiscountSection = () => {
 							textStroke: '1px black',
 						}}
 					>
-						DISCOUNT UP TO 30%
+						DISCOUNT UP TO 50%
 					</p>
 
 					<DiscountTimer />
