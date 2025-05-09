@@ -77,7 +77,10 @@ const Product = () => {
 				)}
 			</div>
 
-			<p>Weekly Featured Products</p>
+			<div className="flex justify-between px-5 md:px-8 items-center">
+				<h1 className="font-bold text-xl md:text-4xl">Weekly Featured Products</h1>
+				<Link to="/all-product">Explore</Link>
+			</div>
 			<div>
 				{!isloading && !error && product.length > 0 && (
 					<Swiper
