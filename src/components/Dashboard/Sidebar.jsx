@@ -8,21 +8,32 @@ import {
 	FiTag,
 	FiUsers,
 } from 'react-icons/fi'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
 import useAuthContext from '../../hooks/useAuthContext'
+import { BiLogOut } from 'react-icons/bi'
 
 const Sidebar = () => {
-	const { user } = useAuthContext()
+	const { user, logoutUser: userLogout } = useAuthContext()
+	const navigate = useNavigate()
+
+	const logoutUser = () => {
+		userLogout()
+		navigate('/')
+	}
 
 	const customerMenu = [
 		{ to: '/dashboard', icon: FiBarChart2, label: 'Dashboard' },
 		{ to: '/dashboard/cart', icon: FiShoppingBag, label: 'Cart' },
 		{ to: '/dashboard/orders', icon: FiShoppingCart, label: 'Order' },
-		// { to: "/reviews", icon: FiStar, label: "Reviews" },
 	]
 
 	const adminMenu = [
-		{ to: '/dashboard', icon: FiBarChart2, label: 'Dashboard' },
+		{
+			to: '/dashboard',
+			icon: FiBarChart2,
+			label: 'Dashboard',
+			hover: 'group-hover:text-red-500',
+		},
 		{ to: '/dashboard/admin/products', icon: FiPackage, label: 'Products' },
 		{ to: '/dashboard/products/add', icon: FiPlusCircle, label: 'Add Product' },
 		{ to: '/dashboard/admin/categroy', icon: FiTag, label: 'Category' },
@@ -30,45 +41,58 @@ const Sidebar = () => {
 		{ to: '/dashboard/cart', icon: FiShoppingBag, label: 'Cart' },
 		{ to: '/dashboard/orders', icon: FiShoppingCart, label: 'Order' },
 		{ to: '/dashboard/admin/review', icon: FiStar, label: 'Reviews' },
-		{ to: '/dashboard/admin/users', icon: FiUsers, label: 'Users' },		
+		{ to: '/dashboard/admin/users', icon: FiUsers, label: 'Users' },
 	]
 
 	const menuItems = user.is_staff ? adminMenu : customerMenu
 
 	return (
-		<div className="drawer-side z-10">
+		<div className="drawer-side h-full z-10 bg-white shadow-sm">
 			<label
 				htmlFor="drawer-toggle"
 				aria-label="close sidebar"
 				className="drawer-overlay"
 			></label>
-			<aside className="menu bg-base-200 w-64 min-h-full p-4 text-base-content">
-				{/* Sidebar header */}
+			<aside className="menu bg-white w-50 h-full p-4 text-base-content">
 				<div className="flex items-center gap-2 mb-6 px-2">
-					<FiShoppingCart className="h-6 w-6" />
+					{/* <FiShoppingCart className="h-6 w-6" /> */}
 					<a
 						href="/"
 						className="text-xl font-bold"
 					>
 						GenZ
 					</a>
-				</div>
+				</div>	
 
-				{/* Sidebar menu */}
 				<ul className="menu menu-md gap-2">
 					{menuItems.map((item, index) => (
 						<li key={index}>
-							<Link to={item.to}>
-								<item.icon className="h-4 w-4" />
+							<Link
+								to={item.to}
+								className="group flex items-center gap-2 p-2 rounded-md transition-all duration-300 hover:bg-white hover:shadow-md hover:font-bold  hover:transition-y-6 "
+							>
+								<item.icon
+									className={`h-4 w-4 text-black transition-colors duration-300 group-hover:text-indigo-600 ${
+										item.hover || ''
+									}`}
+								/>
 								<span>{item.label}</span>
 							</Link>
 						</li>
 					))}
 				</ul>
 
-				{/* Sidebar footer */}
 				<div className="mt-auto pt-6 text-xs text-base-content/70">
-					© 2025 SciMart Admin
+					<div className="flex gap-3 text-xl text-black items-center h-4 ms-3 mb-3">
+						<BiLogOut className="h-4 w-4" />
+						<a
+							onClick={logoutUser}
+							className="cursor-pointer"
+						>
+							<span>Logout</span>
+						</a>
+					</div>
+					<p className="ms-4"> © 2025 GenZ Shop</p>
 				</div>
 			</aside>
 		</div>

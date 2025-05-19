@@ -17,22 +17,23 @@ const Category = () => {
 		setLoading(true)
 		apiClient
 			.get('/category')
-			.then((res) => setCategories(res.data.results))
+			.then((res) => setCategories(res.data.results))			
 			.finally(() => setLoading(false))
+			
 	}, [])
 
 	return (
 		<div>
-			<div className="flex justify-between px-5 md:px-8 items-center mb-5">
-				<h1 className="font-bold text-xl md:text-4xl">View Categories</h1>
-				<a href='shop'>Explore</a>
-			</div>
+			{/* <div className="flex justify-between px-5 md:px-8 items-center mb-5"> */}
+			{/* <h1 className="font-bold text-xl md:text-4xl">View Categories</h1> */}
+			{/* <a href='shop'>Explore</a> */}
+			{/* </div> */}
 
-			<div className="flex flex-wrap w-full px-5 justify-around items-center">
+			<div className="w-full px-10 justify-around items-center">
 				{!loading && categories.length > 0 && (
 					<Swiper
 						modules={[Autoplay, Pagination, Navigation]}
-						spaceBetween={10}
+						spaceBetween={5}
 						centeredSlides={false}
 						autoplay={{
 							delay: 2500,
@@ -47,9 +48,13 @@ const Category = () => {
 							1024: { slidesPerView: 4 },
 							1280: { slidesPerView: 5 },
 						}}
+						className="py-5"
 					>
 						{categories.map((category, index) => (
-							<SwiperSlide key={category.id}>
+							<SwiperSlide
+								key={category.id}
+								className="!w-auto"
+							>
 								<CategoryItem
 									index={index}
 									category={category}

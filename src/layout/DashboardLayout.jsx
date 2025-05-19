@@ -11,7 +11,7 @@ const DashboardLayout = () => {
 	}
 
 	return (
-		<div className="drawer lg:drawer-open">
+		<div className="drawer lg:drawer-open bg-gray-100">
 			<input
 				id="drawer-toggle"
 				type="checkbox"

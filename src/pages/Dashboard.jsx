@@ -4,6 +4,10 @@ import Order from '../components/Dashboard/Orders'
 import { useEffect, useState } from 'react'
 import AuthApiClient from '../services/auth-api-client'
 import { Link } from 'react-router'
+import { ShoppingBasket } from 'lucide-react'
+import { BiSolidCategoryAlt } from 'react-icons/bi'
+import { TbShoppingCartCopy } from 'react-icons/tb'
+
 
 const Dashboard = () => {
 	const [product, setProdcut] = useState([])
@@ -43,20 +47,20 @@ const Dashboard = () => {
 
 	return (
 		<div>
-			<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+			<div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 shadow-sm">
 				<StatCard
-					icon={FiPackage}
+					icon={'https://i.ibb.co/CK243RYj/img-icons8.png'}
 					title="Total Product"
 					value={product.length}
 				/>
 				<StatCard
-					icon={FiPackage}
+					icon={'https://i.ibb.co/k6zwNRQB/img-icons8.png'}
 					title="Total Category"
 					value={category.length}
 				/>
 				<Link to="orders">
 					<StatCard
-						icon={FiPackage}
+						icon={'https://i.ibb.co/KjjrC3L4/img-icons8.png'}
 						title="Total Order"
 						value={orderProduct}
 					/>

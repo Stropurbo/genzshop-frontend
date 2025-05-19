@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
-import { data } from "react-router";
 
 const useAuth = () => {
     const [user, setUser] = useState(null);

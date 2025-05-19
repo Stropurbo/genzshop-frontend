@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form'
 import AuthApiClient from '../services/auth-api-client'
 
 const AddCategory = () => {
-	const { register, handleSubmit } = useForm()
+	const { register, handleSubmit, reset } = useForm()
 	const [category, setcategory] = useState([])
 	const [isloading, setloading] = useState(false)
+	const [images, setImages] = useState([])
 
 	useEffect(
 		() => async () => {
@@ -21,12 +22,29 @@ const AddCategory = () => {
 		[],
 	)
 
+	const handleImageChange = (event) => {
+		const files = Array.from(event.target.files)
+		setImages(files)
+	}
+
 	const handleCategoryAdd = async (data) => {
 		setloading(true)
-		try {			
-			const res =  await AuthApiClient.post('/category/', data)			
-			console.log(res)
-			alert("Category Added Success.")
+		if (!images.length) {
+			alert('Please Select image')
+			setloading(false)
+			return
+		}
+		try {
+			const formdata = new FormData()
+			formdata.append('name', data.name)
+			formdata.append('description', data.description)
+			formdata.append('image', images[0])
+
+			await AuthApiClient.post('/category/', formdata)
+			alert('Category with image Added Success.')
+			reset()
+			setImages([])
+
 		} catch (errors) {
 			console.log('Product add error:', errors.response?.data || errors.message)
 		} finally {
@@ -42,6 +60,14 @@ const AddCategory = () => {
 					action=""
 				>
 					<div className="">
+						<h3 className="text-lg font-medium mb-2">Upload Category Images</h3>
+						<input
+							type="file"
+							accept="image/*"
+							className="file-input file-input-bordered"
+							onChange={handleImageChange}
+						/>
+
 						<label className="block text-sm font-medium">Category Name</label>
 						<input
 							{...register('name', { required: true })}
@@ -53,7 +79,7 @@ const AddCategory = () => {
 							Category Description
 						</label>
 						<input
-							{...register('description' )}
+							{...register('description')}
 							className="input input-bordered p-2 m-2"
 							placeholder="Category Name"
 						/>
