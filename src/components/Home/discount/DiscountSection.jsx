@@ -4,10 +4,9 @@ const DiscountSection = () => {
 	return (
 		<div>
 			<div
-				className="w-full h-[500px] bg-cover bg-center bg-no-repeat flex flex-col md:flex-row 
-        justify-center items-center"
+				className="w-full h-[400px] bg-cover bg-center bg-no-repeat"
 				style={{
-					backgroundImage: `url('https://i.ibb.co.com/rRKFP7d7/sale-up-to-Off.png')`,
+					backgroundImage: `url('https://i.ibb.co/KpM7JCW4/Orange-Simple-Special-Ramen-Promotion-Banner-Landscape-1.png')`,
 				}}
 			>
 				<div
@@ -20,7 +19,7 @@ const DiscountSection = () => {
 							SPECIAL OFFER{' '}
 						</h1>
 						<h1
-							className="text-xl md:text-4xl text-black text-center font-bold"
+							className="text-xl md:text-6xl text-black text-center font-bold"
 							style={{
 								WebkitTextStroke: '1px white',
 								textStroke: '1px white',
@@ -53,8 +52,6 @@ const DiscountSection = () => {
 					</div>
 				</div>
 			</div>
-
-			
 		</div>
 	)
 }

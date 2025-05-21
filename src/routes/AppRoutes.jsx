@@ -38,10 +38,22 @@ const AppRoutes = () => {
 						path="all-product"
 						element={<AllProduct />}
 					/>
+					
 					<Route
-						path="shop"
-						element={<Shop />}
+						path="/shop"
+						element={<AllProduct />}
 					/>
+
+					<Route
+						path="shop/:id"
+						element={<ProductDetail />}
+					/>
+
+					<Route
+						path="/shop/category/:id"
+						element={<AllProduct />}
+					/>
+
 					<Route
 						path="login"
 						element={<Login />}
@@ -66,10 +78,7 @@ const AppRoutes = () => {
 						path="resend-activation"
 						element={<ResendActivation />}
 					/>
-					<Route
-						path="shop/:id"
-						element={<ProductDetail />}
-					/>
+
 					<Route
 						path="profile/"
 						element={<Profile />}

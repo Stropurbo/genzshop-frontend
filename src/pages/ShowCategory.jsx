@@ -39,8 +39,8 @@ const ShowCategory = () => {
 					<thead className="p-2">
 						<tr>
 							<th>NO.</th>
-							<th>Category</th>							
-							<th></th>
+							<th>Category</th>
+							<th>ID</th>
 						</tr>
 					</thead>
 					{category.length === 0 ? (
@@ -53,7 +53,7 @@ const ShowCategory = () => {
 								<tr>
 									<th>{index + 1}</th>
 									<td>{cat.name}</td>
-
+									<td>{cat.id}</td>
 									<td>
 										<button
 											onClick={() => deleteProduct(cat.id)}

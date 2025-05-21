@@ -62,11 +62,8 @@ const ProductDetail = () => {
 					</p>
 					<p className="ml-2 pt-8"> {product.description} </p>
 
-					<div className="ml-2 pt-8 flex ">
-						Available:
-						<p className="w-50 h-7 text-center font-bold text-gray-500 rounded-lg flex items-center justify-center">
-							In Stock ( {product.stock} Available)
-						</p>
+					<div className="ml-2 pt-8 flex text-gray-500 font-bold">
+						In Stock ( {product.stock} Available )						
 					</div>
 
 					<div className="mt-auto">

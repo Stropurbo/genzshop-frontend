@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Pagination = ({totalpage, currentpage ,handlePageChange}) => {
+    
     return (
         <div className='flex justify-center py-8'>
             {Array.from({length:totalpage}, ( _, i) => (

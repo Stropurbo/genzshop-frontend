@@ -16,8 +16,8 @@ const CarosolSlide = ({ title, subtitle, image, productId }) => {
 				>
 					{/* left content */}
 					<div className="w-full md:w-1/2 text-center md:text-left mt-8 md:m-0">
-						<h1 className="text-3xl md:text-5xl text-white"> {title} </h1>
-						<p className="py-2 md:py-4 text-lg text-white "> {subtitle} </p>
+						<h1 className="text-3xl md:text-5xl text-white line-clamp-1"> {title} </h1>
+						<p className="text-lg text-white line-clamp-2 mb-5"> {subtitle} </p>
 						<a
 							href={`/shop/${productId}`}
 							className="btn px-2 py-2 md:px-7 md:py-3 rounded-lg"
@@ -29,7 +29,7 @@ const CarosolSlide = ({ title, subtitle, image, productId }) => {
 					{/* right image */}
 					<div className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
 						<img
-							className="w-full max-w-xs sm:max-w-sm md:max-w-md"
+							className="w-full md:h-64 bg-contain max-w-xs sm:max-w-sm md:max-w-md"
 							src={image}
 							alt="product image"
 						/>
@@ -38,7 +38,7 @@ const CarosolSlide = ({ title, subtitle, image, productId }) => {
 			</div>
 
 			<div>
-				<DiscountSection />
+				{/* <DiscountSection /> */}
 			</div>
 		</div>
 	)

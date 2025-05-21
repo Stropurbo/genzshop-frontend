@@ -1,10 +1,17 @@
+import { useNavigate } from 'react-router'
 import defultImage from '../../../assets/default_product.jpg'
 
 const CategoryItem = ({ category }) => {
+	const navigate = useNavigate()
+	const handleClick = () => {
+		navigate(`/shop/category/${category.id}`)
+	}
 
 	return (
-		<div className="w-full flex justify-center flex-col items-center md:w-40 h-28 px-2 m-2 bg-gray-100 rounded-lg p-5">
-
+		<div
+			onClick={handleClick}
+			className="w-full flex justify-center flex-col items-center md:w-40 h-28 px-2 m-2 bg-gray-100 rounded-lg p-5"
+		>
 			<img
 				src={category.image || defultImage}
 				alt={category.name}

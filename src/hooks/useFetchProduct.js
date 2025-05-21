@@ -1,42 +1,42 @@
 import { useEffect, useState } from "react"
 import apiClient from "../services/api-client";
 
-const useFetchProduct = ( 
-    currentpage, 
-    priceRange, 
-    selectedCategory,
-    searchQuery,
-    sortOrder
+const useFetchProduct = (currentPage, priceRange, selectedCategory, searchQuery, sortOrder) => {
+	const [myproduct, setProduct] = useState([])
+	const [isloading, setLoading] = useState(false)
+	const [error, setError] = useState('')
+	const [totalpage, setTotalPage] = useState(0)
 
-    ) => {
+	useEffect(() => {
+		const fetchProduct = async () => {
+			setLoading(true)
 
-    const [myproduct, setProduct] = useState([]);
-    const [isloading, setLoading] = useState(false)
-    const [error, setError] = useState("")
-    const [totalpage, settotalpage] = useState(0);
+			const params = {
+				price__gt: priceRange[0],
+				price__lt: priceRange[1],
+				page: currentPage,
+				ordering: sortOrder,
+			}
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            setLoading(true)
-            const url = `products/?category_id=&price__gt=${priceRange[0]}&price__lt=${priceRange[1]}
-            &page=${currentpage}&category_id=${selectedCategory}&search=${searchQuery}&ordering=${sortOrder}`;
+			if (selectedCategory) params.category_id = selectedCategory
+			if (searchQuery) params.search = searchQuery
 
-            try {
-            const res = await apiClient.get(url);
-                    
-            setProduct(res.data.results)
-            settotalpage(Math.ceil(res.data.count / res.data.results.length))
+			try {
+				const res = await apiClient.get('products/', { params })
+				setProduct(res.data.results)
 
-           } catch (error) {
-            setError(error);
-           }finally{
-            setLoading(false)
-           }
-        };
-        fetchProduct();
-    }, [currentpage, priceRange, selectedCategory, searchQuery,sortOrder]);
+				setTotalPage(Math.ceil(res.data.count / 10))
+			} catch (error) {
+				setError(error.message || 'Something went wrong')
+			} finally {
+				setLoading(false)
+			}
+		}
 
-    return {myproduct, isloading,error, totalpage}
+		fetchProduct()
+	}, [currentPage, priceRange, selectedCategory, searchQuery, sortOrder])
+
+	return { myproduct, isloading, error, totalpage }
 }
 
-export default useFetchProduct;
+export default useFetchProduct

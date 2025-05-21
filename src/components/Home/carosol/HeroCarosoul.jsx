@@ -21,7 +21,7 @@ const HeroCarosoul = () => {
 	const slides = product.map((product) => ({
 		title: product.name,
 		subtitle: product.description,
-		image: product.images[0].image,
+		image: product.images[0 ].image,
 		id: product.id
 	}))
 

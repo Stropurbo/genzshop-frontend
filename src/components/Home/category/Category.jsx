@@ -24,11 +24,6 @@ const Category = () => {
 
 	return (
 		<div>
-			{/* <div className="flex justify-between px-5 md:px-8 items-center mb-5"> */}
-			{/* <h1 className="font-bold text-xl md:text-4xl">View Categories</h1> */}
-			{/* <a href='shop'>Explore</a> */}
-			{/* </div> */}
-
 			<div className="w-full px-10 justify-around items-center">
 				{!loading && categories.length > 0 && (
 					<Swiper
@@ -38,17 +33,19 @@ const Category = () => {
 						autoplay={{
 							delay: 2500,
 							disableOnInteraction: false,
-						}}
+						}}						
+						slidesPerView={1}						
+						freeMode={true}						
 						pagination={false}
 						navigation={false}
-						slidesPerView={1}
 						breakpoints={{
 							320: { slidesPerView: 1 },
 							640: { slidesPerView: 2 },
 							1024: { slidesPerView: 4 },
 							1280: { slidesPerView: 5 },
 						}}
-						className="py-5"
+						
+						className="py-5"						
 					>
 						{categories.map((category, index) => (
 							<SwiperSlide

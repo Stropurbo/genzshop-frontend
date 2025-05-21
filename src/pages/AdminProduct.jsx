@@ -6,18 +6,27 @@ const AdminProduct = () => {
 	const [isloading, setloading] = useState(false)
 
 	useEffect(() => {
-		const fetchProducts = async () => {
-			try {
-				const res = await AuthApiClient.get('/products/')
-				setProdcut(res.data.results)
-				console.log(res.data)
-			} catch (error) {
-				console.error('Failed to fetch products:', error)
+		const fetchAllProducts = async () => {
+			let url = '/products/'
+			let allProducts = []
+
+			while (url) {
+				try {
+					const res = await AuthApiClient.get(url)
+					allProducts = [...allProducts, ...res.data.results]
+					url = res.data.next 
+				} catch (error) {
+					console.error('Failed to fetch products:', error)
+					break
+				}
 			}
+
+			setProdcut(allProducts)
 		}
 
-		fetchProducts()
+		fetchAllProducts()
 	}, [])
+	
 
 
 	const deleteProduct = async (id) => {
@@ -35,7 +44,7 @@ const AdminProduct = () => {
 	}
 
 	return (
-		<div>
+		<div className="min-h-screen p-4 overflow-auto">
 			<div className="overflow-x-auto">
 				<table className="table table-xs">
 					<thead className="p-2">
