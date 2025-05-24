@@ -56,7 +56,7 @@ const Product = () => {
 				{!isloading && !error && product.length > 0 && (
 					<Swiper
 						modules={[Autoplay, Pagination, Navigation]}
-						spaceBetween={2}
+						spaceBetween={30}
 						centeredSlides={false}
 						autoplay={{
 							delay: 2500,
@@ -90,7 +90,7 @@ const Product = () => {
 
 			<div className="mx-auto px-10 bg-white">
 				<div className="flex justify-between px-5 md:px-5 items-center">
-					<h1 className="font-bold text-xl md:text-4xl">
+					<h1 className="font-bold text-xl md:text-4xl mt-5">
 						Top <span className="text-yellow-800">Selling</span>
 					</h1>
 					<Link to="/all-product">Explore</Link>
@@ -99,7 +99,7 @@ const Product = () => {
 					{!isloading && !error && fashionProduct.length > 0 && (
 						<Swiper
 							modules={[Autoplay, Pagination, Navigation]}
-							spaceBetween={2}
+							spaceBetween={30}
 							centeredSlides={false}
 							autoplay={{
 								delay: 2500,
@@ -116,7 +116,7 @@ const Product = () => {
 							{fashionProduct.map((product) => (
 								<SwiperSlide
 									key={product.id}
-									className="flex justify-center"
+									className="flex"
 								>
 									<ProductItem product={product} />
 								</SwiperSlide>
@@ -124,7 +124,8 @@ const Product = () => {
 						</Swiper>
 					)}
 				</div>
-			</div>
+			</div>		
+
 		</div>
 	)
 }

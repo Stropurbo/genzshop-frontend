@@ -23,27 +23,35 @@ const DiscountTimer = () => {
     }, [])
 
     return (
-        <div>
-            <div className="flex justify-center gap-4 mt-3">
-                    <div>
-                        <p className="text-center text-white text-2xl md:text-4xl font-bold">{timeLeft.days}</p>
-                        <p className="font-bold text-center">Days</p>
-                    </div>
-                    <div>
-                    <p className="text-center text-white text-2xl md:text-4xl font-bold">{timeLeft.hours}</p>
-                    <p className="font-bold text-center">Hour</p>
-                    </div>
-                    <div>
-                    <p className="text-center text-white text-2xl md:text-4xl font-bold">{timeLeft.minutes}</p>
-                    <p className="font-bold text-center">Min</p>
-                    </div>
-                    <div>
-                    <p className="text-center text-white text-2xl md:text-4xl font-bold">{timeLeft.secound}</p>
-                    <p className="font-bold text-center">Sec</p>
-                    </div>
-                </div>
-        </div>
-    );
+		<div>
+			<div className="flex justify-center gap-4 mt-3 text-white">
+				<div>
+					<p className="text-center text-yellow-500 text-2xl md:text-4xl font-bold">
+						{timeLeft.days}
+					</p>
+					<p className="font-bold text-center">Days</p>
+				</div>
+				<div>
+					<p className="text-center text-yellow-500 text-2xl md:text-4xl font-bold">
+						{timeLeft.hours}
+					</p>
+					<p className="font-bold text-center">Hour</p>
+				</div>
+				<div>
+					<p className="text-center text-yellow-500 text-2xl md:text-4xl font-bold">
+						{timeLeft.minutes}
+					</p>
+					<p className="font-bold text-center">Min</p>
+				</div>
+				<div>
+					<p className="text-center text-yellow-500 text-2xl md:text-4xl font-bold">
+						{timeLeft.secound}
+					</p>
+					<p className="font-bold text-center">Sec</p>
+				</div>
+			</div>
+		</div>
+	)
 };
 
 export default DiscountTimer;

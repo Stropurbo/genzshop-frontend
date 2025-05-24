@@ -6,6 +6,7 @@ import apiClient from '../services/api-client'
 import { FaArrowLeft } from 'react-icons/fa'
 import defaultImage from '../assets/default_product.jpg'
 import ReviewSection from '../components/Reviews/ReviewSection'
+import ProductReview from './ProductReview'
 
 const ProductDetail = () => {
 	const [product, setProduct] = useState(null)
@@ -50,20 +51,27 @@ const ProductDetail = () => {
 				/>
 
 				<div className="flex flex-col h-full">
-					<p className="text-start">
-						Category: {product.category_details?.name || 'Unknown Category'}
+					<p className="text-start text-yellow-500">
+						{product.category_details?.name || 'Unknown Category'}
 					</p>
 					<p className="pt-5 ml-2 text-2xl font-bold">{product.name}</p>
+
 					<p className="ml-2 pt-8 font-bold text-2xl">
-						${product.price}
-						<span className=" text-sm ml-2 text-gray-500">
-							{product.price_with_tax} ( incl. tax )
+						{product.discount_price > 0
+							? `$${product.discount_price}`
+							: `$${product.price}`}						
+
+						<span className="text-sm ml-2 text-gray-500">
+							{/* {product.price_with_tax} (incl. tax) */}
 						</span>
-					</p>
+					</p>					
+
+					<ProductReview reviews={product.reviews} />
+
 					<p className="ml-2 pt-8"> {product.description} </p>
 
-					<div className="ml-2 pt-8 flex text-gray-500 font-bold">
-						In Stock ( {product.stock} Available )						
+					<div className="ml-2 mb-2 pt-8 flex text-gray-500 font-bold">
+						In Stock ( {product.stock} Available )
 					</div>
 
 					<div className="mt-auto">

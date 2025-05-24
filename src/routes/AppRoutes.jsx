@@ -24,6 +24,11 @@ import AddCategory from '../pages/AddCategory'
 import Reviews from '../pages/Reviews'
 import UserList from '../pages/UserList'
 import Profile from '../pages/Profile'
+import LatestNews from '../pages/LatestNews'
+import BlogItem from '../pages/BlogItem'
+import BlogView from '../pages/BlogView'
+import AddBlog from '../pages/AddBlog'
+import AllBlogView from '../pages/AllBlogView'
 
 const AppRoutes = () => {
 	return (
@@ -38,7 +43,11 @@ const AppRoutes = () => {
 						path="all-product"
 						element={<AllProduct />}
 					/>
-					
+					<Route
+						path="all-news"
+						element={<AllBlogView />}
+					/>
+
 					<Route
 						path="/shop"
 						element={<AllProduct />}
@@ -48,10 +57,18 @@ const AppRoutes = () => {
 						path="shop/:id"
 						element={<ProductDetail />}
 					/>
-
 					<Route
 						path="/shop/category/:id"
 						element={<AllProduct />}
+					/>
+
+					<Route
+						path="/blogs"
+						element={<LatestNews />}
+					/>
+					<Route
+						path="blog/:id"
+						element={<BlogView />}
 					/>
 
 					<Route
@@ -123,6 +140,11 @@ const AppRoutes = () => {
 					<Route
 						path="products/add"
 						element={<AddProduct />}
+					/>
+
+					<Route
+						path="blog/add"
+						element={<AddBlog />}
 					/>
 
 					<Route

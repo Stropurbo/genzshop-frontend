@@ -34,6 +34,7 @@ const AddCategory = () => {
 			setloading(false)
 			return
 		}
+		
 		try {
 			const formdata = new FormData()
 			formdata.append('name', data.name)

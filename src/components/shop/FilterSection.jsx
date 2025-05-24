@@ -1,4 +1,5 @@
-import { ChevronDown } from "lucide-react"
+import { ChevronDown } from 'lucide-react'
+import { useState } from 'react'
 
 const FilterSection = ({
 	priceRange,
@@ -11,30 +12,75 @@ const FilterSection = ({
 	// sortOrder,
 	// handleSorting,
 }) => {
+	const [dropdownOpen, setDropdownOpen] = useState(false)
+
 	return (
 		<div className="mb-8">
-		
 			{/* Category Filter */}
-			<div className="bg-white p-4 rounded-lg">
+			<div className="bg-white p-4 rounded-lg relative">
 				<label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
 
-				<select
-					className="w-full p-2 border rounded-md"
-					value={selectedCategory}
-					onChange={(e) =>
-						handleCategoryChange(e.target.value ? Number(e.target.value) : null)
-					}
+				<button
+					type="button"
+					onClick={() => setDropdownOpen(!dropdownOpen)}
+					className="w-full p-2 border border-gray-200 rounded-md flex items-center justify-between bg-white"
 				>
-					<option value="">All Categories</option>
-					{categories.map((category) => (
-						<option
-							key={category.id}
-							value={category.id}
+					<div className="flex items-center gap-2">
+						{selectedCategory ? (
+							<>
+								<img
+									src={
+										categories.find((cat) => cat.id === selectedCategory)
+											?.image
+									}
+									alt="Selected"
+									className="w-6 h-6 object-cover rounded"
+								/>
+								<span>
+									{
+										categories.find((cat) => cat.id === selectedCategory)
+											?.name
+									}
+								</span>
+							</>
+						) : (
+							<span className="text-gray-400">Select Category</span>
+						)}
+					</div>
+					<ChevronDown className="w-4 h-4" />
+				</button>
+
+				{dropdownOpen && (
+					<div className="absolute z-10 mt-1 w-full bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto">
+						
+						<div
+							onClick={() => {
+								handleCategoryChange(null) 
+								setDropdownOpen(false)
+							}}
+							className="flex items-center gap-2 p-2 cursor-pointer hover:bg-gray-100"
 						>
-							{category.name}
-						</option>
-					))}
-				</select>
+							<span className="font-medium text-gray-700">All Category</span>
+						</div>
+						{categories.map((category) => (
+							<div
+								key={category.id}
+								onClick={() => {
+									handleCategoryChange(category.id)
+									setDropdownOpen(false)
+								}}
+								className="flex items-center gap-2 p-2 cursor-pointer hover:bg-gray-100"
+							>
+								<img
+									src={category.image}
+									alt={category.name}
+									className="w-6 h-6 object-cover rounded"
+								/>
+								<span>{category.name}</span>
+							</div>
+						))}
+					</div>
+				)}
 			</div>
 
 			{/* Search */}
@@ -45,7 +91,7 @@ const FilterSection = ({
 					value={searchQuery}
 					onChange={(e) => handleSearchQuery(e.target.value)}
 					placeholder="Search Products..."
-					className="w-full p-2 border rounded-md"
+					className="w-full p-2 border border-gray-200 rounded-md"
 				/>
 			</div>
 
@@ -53,7 +99,7 @@ const FilterSection = ({
 			<div className="p-3 md:p-4 rounded-lg">
 				<label className="block text-sm font-medium text-gray-700 mb-2">Price</label>
 
-				<div className="flex mb-2 space-x-2">
+				<div className="flex justify-center mb-2 space-x-2">
 					<div className="flex items-center">
 						<input
 							type="number"
@@ -61,7 +107,7 @@ const FilterSection = ({
 							max={priceRange[1]}
 							value={priceRange[0]}
 							onChange={(e) => handlePriceChange(0, Number(e.target.value))}
-							className="w-20 p-2 border border-gray-500 rounded-md"
+							className="w-20 p-2 border border-gray-200 rounded-md"
 						/>
 					</div>
 
@@ -72,7 +118,7 @@ const FilterSection = ({
 							max="1000"
 							value={priceRange[1]}
 							onChange={(e) => handlePriceChange(1, Number(e.target.value))}
-							className="w-20 p-2 border border-gray-500 rounded-md"
+							className="w-20 p-2 border border-gray-200 rounded-md"
 						/>
 					</div>
 				</div>

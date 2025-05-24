@@ -38,7 +38,7 @@ const Orders = () => {
 													: order.status === 'Shipped'
 													? 'bg-fuchsia-500'
 													: order.status === 'Not Paid'
-													? 'bg-red-500'
+													? 'bg-red-500 text-white'
 													: order.status === 'Ready To Ship'
 													? 'bg-yellow-200'
 													: order.status === 'Canceled'

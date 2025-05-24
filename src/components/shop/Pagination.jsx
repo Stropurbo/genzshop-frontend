@@ -8,7 +8,7 @@ const Pagination = ({totalpage, currentpage ,handlePageChange}) => {
 
                <button key={i}
                onClick={() => handlePageChange(i+1)}
-                className= {`mx-1 p-4 mb-5 btn ${currentpage === i+1 ? "btn-primary" : "btn-active"}`} >
+                className= {`mx-1 p-4 mb-5 btn ${currentpage === i+1 ? "btn-warning" : "btn-active"}`} >
                 {i+1}
                </button> 
 

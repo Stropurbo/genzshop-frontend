@@ -5,7 +5,7 @@ import { BiHeart } from 'react-icons/bi'
 import { useEffect, useState } from 'react'
 import apiClient from '../services/api-client'
 import debounce from 'lodash.debounce' 
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, X } from 'lucide-react'
 
 const Navbar = () => {
 	const { user, logoutUser } = useAuthContext()
@@ -13,6 +13,8 @@ const Navbar = () => {
 	const [category, setCategory] = useState([])
 	const [input, setInput] = useState("")
 	const [results, setResults] = useState([])
+	// const [isDrawerOpen, setDrawerOpen] = useState(false)
+
  
 	useEffect(() => {
 		apiClient.get('/category/')
@@ -31,7 +33,6 @@ const Navbar = () => {
 		fetchData(value)
 		setResults([])	
 	}
-	
 
 	return (
 		<div className="navbar bg-base-100 shadow-sm">
@@ -51,8 +52,11 @@ const Navbar = () => {
 						role="button"
 						className="btn m-1 flex items-center gap-1"
 					>
-						<span className='flex items-center'>Category</span>
-						<ChevronDown size={18} className='mt-1'/>
+						<span className="flex items-center">Category</span>
+						<ChevronDown
+							size={18}
+							className="mt-1"
+						/>
 					</div>
 					<ul
 						tabIndex={0}
@@ -72,6 +76,7 @@ const Navbar = () => {
 			</div>
 
 			<div className="navbar-end">
+				{/* seach bar */}
 				<div className="relative w-full md:w-48 mr-2">
 					<input
 						type="search"
@@ -103,7 +108,41 @@ const Navbar = () => {
 					)}
 				</div>
 
-				<BiHeart className="h-5 w-5 hover:bg-amber-500" />
+				{/* <label
+					onClick={() => setDrawerOpen(true)}
+					className="cursor-pointer"
+				>
+					<BiHeart className="h-5 w-5" />
+				</label> */}
+
+				{/* {isDrawerOpen && (
+					<div className="drawer drawer-end z-50">
+						<input
+							id="my-drawer-4"
+							type="checkbox"
+							className="drawer-toggle"
+							checked
+						/>
+						<div className="drawer-side transition-all duration-300 ease-in-out">
+							<label
+								htmlFor="my-drawer-4"
+								className="drawer-overlay"
+								onClick={() => setDrawerOpen(false)}
+							></label>
+							<ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+								<div className="flex justify-between font-bold text-xl pb-2 border-b border-gray-300">
+									Wishlist
+									<X onClick={ () => setDrawerOpen(false)} className='cursor-pointer'/>
+								</div>
+
+								<li>
+									<a>Wishlist Item 1</a>
+								</li>
+
+							</ul>
+						</div>
+					</div>
+				)} */}
 
 				{user ? (
 					<div className="flex">
@@ -147,6 +186,7 @@ const Navbar = () => {
 									<span className="text-primary">
 										Subtotal: ${cart?.total_price || 0}
 									</span>
+									
 									<div className="card-actions">
 										<a href="/dashboard/cart">
 											<button className="btn btn-primary btn-block">

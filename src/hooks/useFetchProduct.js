@@ -23,8 +23,26 @@ const useFetchProduct = (currentPage, priceRange, selectedCategory, searchQuery,
 
 			try {
 				const res = await apiClient.get('products/', { params })
-				setProduct(res.data.results)
+				const products = res.data.results
 
+				const updateProduct = await Promise.all(
+					products.map(async (product) => {
+						try{
+							const review = await apiClient.get(`products/${product.id}/review/`)
+							return {
+								...product, 
+								reviews: review.data.results 
+							}
+						}catch (error){
+							console.log(error)
+							return {
+								...product,
+								reviews: false,
+							}
+						}
+					})
+				)
+				setProduct(updateProduct)
 				setTotalPage(Math.ceil(res.data.count / 10))
 			} catch (error) {
 				setError(error.message || 'Something went wrong')

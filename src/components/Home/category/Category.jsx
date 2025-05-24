@@ -24,30 +24,30 @@ const Category = () => {
 
 	return (
 		<div>
-			<div className="w-full px-10 justify-around items-center">
+			<div className="w-full px-10 mt-10 justify-around items-center">
 				{!loading && categories.length > 0 && (
 					<Swiper
 						modules={[Autoplay, Pagination, Navigation]}
-						spaceBetween={5}
+						spaceBetween={10}
 						centeredSlides={false}
 						autoplay={{
-							delay: 2500,
+							delay: 0,
 							disableOnInteraction: false,
-						}}						
-						slidesPerView={1}						
-						freeMode={true}						
+						}}
+						speed={6000}
+						freeMode={true}
 						pagination={false}
 						navigation={false}
+						loop={false}						
 						breakpoints={{
 							320: { slidesPerView: 1 },
 							640: { slidesPerView: 2 },
 							1024: { slidesPerView: 4 },
 							1280: { slidesPerView: 5 },
 						}}
-						
-						className="py-5"						
+						className="py-5"
 					>
-						{categories.map((category, index) => (
+						{[...categories, ...categories].map((category, index) => (						
 							<SwiperSlide
 								key={category.id}
 								className="!w-auto"

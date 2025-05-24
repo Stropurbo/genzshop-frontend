@@ -30,6 +30,7 @@ const AddProduct = () => {
 			const stringToInt = {
 				...data,
 				price: parseFloat(data.price),
+				discount: parseFloat(data.discount),
 				stock: parseInt(data.stock),
 				category: parseInt(data.category),
 			}
@@ -55,7 +56,6 @@ const AddProduct = () => {
 			alert('Please Select image')
 			setLoading(false)			
 		}
-
 		try {
 			for (const image of images) {
 				const formData = new FormData()
@@ -119,6 +119,16 @@ const AddProduct = () => {
 						{errors.price && (
 							<p className="text-red-500 text-xs">{errors.price.message}</p>
 						)}
+					</div>
+
+					<div>
+						<label className="block text-sm font-medium">Discount</label>
+						<input
+							type="text"
+							{...register('discount')}
+							className="input input-bordered w-full"
+							placeholder="Discount Price"
+						/>						
 					</div>
 
 					<div>
