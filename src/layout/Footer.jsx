@@ -66,8 +66,8 @@ const Footer = () => {
 				</p>
 				<img
 					src="https://i.ibb.co/pj4Wh6NK/payment.png"
-					alt=""
-					srcset=""
+					alt="Image"
+					
 				/>
 			</div>
 		</footer>

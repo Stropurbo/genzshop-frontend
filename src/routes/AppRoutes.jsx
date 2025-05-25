@@ -29,6 +29,8 @@ import BlogItem from '../pages/BlogItem'
 import BlogView from '../pages/BlogView'
 import AddBlog from '../pages/AddBlog'
 import AllBlogView from '../pages/AllBlogView'
+import ViewBlog from '../pages/ViewBlog'
+import EditBlog from '../pages/EditBlog'
 
 const AppRoutes = () => {
 	return (
@@ -69,6 +71,11 @@ const AppRoutes = () => {
 					<Route
 						path="blog/:id"
 						element={<BlogView />}
+					/>
+
+					<Route
+						path="/edit-blog/:id"
+						element={<EditBlog />}
 					/>
 
 					<Route
@@ -145,6 +152,11 @@ const AppRoutes = () => {
 					<Route
 						path="blog/add"
 						element={<AddBlog />}
+					/>
+
+					<Route
+						path="blog/view"
+						element={<ViewBlog />}
 					/>
 
 					<Route
