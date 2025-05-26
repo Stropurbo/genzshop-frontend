@@ -16,46 +16,62 @@ const UserList = () => {
 		[],
 	)
 
-	// const deleteUser = async (id) => {
-	// 	try {
-	// 		await AuthApiClient.delete(`/auth/users/${id}/`)
-	// 		setUser((authU) => authU.filter((user) => user.id !== id))
-	// 		alert('User delete successfull')
-
-	// 	} catch (error) {
-	// 		console.log(error)
-	//         console.log(error.response?.data || error.message)
-
-	// 	}
-	// }
+	const deleteUser = async (id) => {
+		try {
+			await AuthApiClient.delete(`/admin/user/${id}/`)
+			setUser((authU) => authU.filter((user) => user.id !== id))
+			alert('User delete successfull')
+		} catch (error) {
+			console.log(error)
+			alert('Failed to delete user')
+		}
+	}
 
 	return (
-		<div className="mx-auto">
-			<div className="card bg-base-100 w-42 max-w-xs h-24 shadow-md mb-4">
-				<div className="card-body rounded-lg items-center justify-center">
-					<h2 className="card-title text-center text-base md:text-xl">Total User</h2>
-					<p className="text-center text-lg md:text-2xl font-semibold">
-						{user.length}
-					</p>
-				</div>
-			</div>
+		<div className="mx-auto max-w-5xl p-4">
+			<h2 className="text-2xl font-bold mb-4 text-center">Total Users: {user.length}</h2>
 
-			{user.map((authUser) => (
-				<div
-					key={authUser.id}
-					className="mb-2 p-4 rounded-lg shadow"
-				>
-					<div className="flex justify-between items-center">
-						<p> {authUser.email} </p>
-						{/* <button
-							onClick={() => deleteUser(authUser.id)}
-							className="btn btn-error text-white"
-						>
-							Delete
-						</button> */}
-					</div>
-				</div>
-			))}
+			<div className="overflow-x-auto shadow-lg rounded-lg">
+
+				<table className="table-auto w-full text-left border-collapse bg-white">
+					<thead className="bg-gray-100">
+						<tr>
+							<th className="px-4 py-2 border">NO.</th>
+							<th className="px-4 py-2 border">Email</th>
+							<th className="px-4 py-2 border text-center">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{user.map((authUser, index) => (
+							<tr
+								key={authUser.id}
+								className="border-t hover:bg-gray-50"
+							>
+								<td className="px-4 py-2 border">{index + 1}</td>
+								<td className="px-4 py-2 border">{authUser.email}</td>
+								<td className="px-4 py-2 border text-center">
+									<button
+										onClick={() => deleteUser(authUser.id)}
+										className="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded"
+									>
+										Delete
+									</button>
+								</td>
+							</tr>
+						))}
+						{user.length === 0 && (
+							<tr>
+								<td
+									colSpan="3"
+									className="text-center py-4 text-gray-500"
+								>
+									No users found.
+								</td>
+							</tr>
+						)}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	)
 }

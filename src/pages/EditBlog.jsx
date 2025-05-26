@@ -9,14 +9,14 @@ const EditBlog = () => {
 	const navigate = useNavigate()
 	const [image, setImage] = useState(null)
 	const [blog, setBlog] = useState(null)
-	
-    const handleImageChange = (event) => {
+
+	const handleImageChange = (event) => {
 		const file = event.target.files[0]
 		setImage(file)
 	}
 
 	const handleChange = (e) => {
-		const {name, value} = e.target
+		const { name, value } = e.target
 		setBlog((pre) => ({
 			...pre,
 			[name]: value,
@@ -26,7 +26,7 @@ const EditBlog = () => {
 	useEffect(() => {
 		const fetchBlog = async () => {
 			try {
-				const res = await apiClient.get(`/blogs/${id}`)                
+				const res = await apiClient.get(`/blogs/${id}`)
 				setBlog(res.data)
 			} catch (error) {
 				console.error(error)
@@ -35,14 +35,14 @@ const EditBlog = () => {
 		fetchBlog()
 	}, [id])
 
-	const handleSubmitNews = async (e) => {	
+	const handleSubmitNews = async (e) => {
 		e.preventDefault()
-		console.log('Submit clicked') 
+		console.log('Submit clicked')
 		try {
 			const formdata = new FormData()
 			if (image) {
 				formdata.append('image', image)
-			}	
+			}
 			formdata.append('name', blog.name)
 			formdata.append('description', blog.description)
 

@@ -5,11 +5,13 @@ import Product from '../components/products/Product';
 import DiscountSection from '../../src/components/Home/discount/DiscountSection'
 import Category from '../components/Home/category/Category';
 import LatestNews from './LatestNews';
+import ThreeCaro from './ThreeCaro';
 
 const Home = () => {
     return (
 		<div>
-			<HeroCarosoul />
+			<ThreeCaro />
+			{/* <HeroCarosoul /> */}
 			<Category />
 			<Product />
 			<DiscountSection />

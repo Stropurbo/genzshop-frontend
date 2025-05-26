@@ -59,7 +59,7 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 
 				<div className="card-actions justify-end mt-4">
 					<button
-						className="btn btn-active btn-success w-full"
+						className="btn btn-warning text-black w-full"
 						onClick={createOrder}
 						disabled={itemCount === 0 || loading}
 					>

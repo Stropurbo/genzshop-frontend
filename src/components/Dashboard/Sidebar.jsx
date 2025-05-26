@@ -12,6 +12,7 @@ import { Link, useNavigate } from 'react-router'
 import useAuthContext from '../../hooks/useAuthContext'
 import { BiLogOut } from 'react-icons/bi'
 import { Newspaper, Podcast } from 'lucide-react'
+import { BsPeople } from 'react-icons/bs'
 
 const Sidebar = () => {
 	const { user, logoutUser: userLogout } = useAuthContext()
@@ -45,6 +46,7 @@ const Sidebar = () => {
 		{ to: '/dashboard/admin/users', icon: FiUsers, label: 'Users' },
 		{ to: '/dashboard/blog/view', icon: Podcast, label: 'View Blog' },
 		{ to: '/dashboard/blog/add', icon: Newspaper, label: 'Add Blog' },
+		{ to: '/dashboard/subscriber', icon: BsPeople, label: 'Subscriber' },
 	]
 
 	const menuItems = user.is_staff ? adminMenu : customerMenu

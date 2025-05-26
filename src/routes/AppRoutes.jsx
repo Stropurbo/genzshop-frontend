@@ -31,6 +31,7 @@ import AddBlog from '../pages/AddBlog'
 import AllBlogView from '../pages/AllBlogView'
 import ViewBlog from '../pages/ViewBlog'
 import EditBlog from '../pages/EditBlog'
+import SubscriberList from '../pages/SubscriberList'
 
 const AppRoutes = () => {
 	return (
@@ -179,6 +180,11 @@ const AppRoutes = () => {
 					<Route
 						path="admin/users"
 						element={<UserList />}
+					/>
+
+					<Route
+						path="subscriber"
+						element={<SubscriberList />}
 					/>
 				</Route>
 			</Routes>

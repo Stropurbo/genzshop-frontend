@@ -88,7 +88,7 @@ const AddCategory = () => {
 
 					<button
 						type="submit"
-						className="btn btn-primary "
+						className="btn btn-warning ml-2 "
 						disabled={isloading}
 					>
 						{isloading ? 'Adding...' : 'Add Category'}
