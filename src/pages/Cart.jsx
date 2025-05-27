@@ -73,27 +73,28 @@ const Cart = () => {
     if(loading) return <p>Loading... </p>
     if(!localCart) return <p>No Cart Found</p>
     return (
-       <div className='container mx-auto px-4 py-0'>
-         <div className='grid  grid-cols-1 md:grid-cols-2 gap-8'>
-            <div>
-                <Suspense>
-                <CartItemList 
-                items={localCart.items}
-                handleUpdateQuantity={handleUpdateQuantity}
-                handleRemoveItem= {handleRemoveItem}
-                />
-                </Suspense>
-            </div>
-            <div>
-                <CartSummary 
-                totalPrice={localCart.total_price}
-                itemCount={localCart.items.length}
-                cartId={cartId}
-                />
-            </div>
-        </div>
-       </div>
-    );
+		<div className="container mx-auto px-4 py-0">
+			<div className="grid  grid-cols-1 md:grid-cols-2 gap-8">
+				<div>
+					<Suspense>
+						<CartItemList
+							items={localCart.items}
+							handleUpdateQuantity={handleUpdateQuantity}
+							handleRemoveItem={handleRemoveItem}
+						/>
+					</Suspense>
+				</div>
+				<div>
+					<CartSummary
+						totalPrice={localCart.total_price}
+						itemCount={localCart.items.length}
+						cartId={cartId}
+						discount={localCart.discount}
+					/>
+				</div>
+			</div>
+		</div>
+	)
 };
 
 export default Cart;

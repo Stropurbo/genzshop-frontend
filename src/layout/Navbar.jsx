@@ -4,38 +4,35 @@ import useCartContext from '../hooks/useCartContext'
 import { BiHeart } from 'react-icons/bi'
 import { useEffect, useState } from 'react'
 import apiClient from '../services/api-client'
-import debounce from 'lodash.debounce' 
+import debounce from 'lodash.debounce'
 import { ChevronDown, X } from 'lucide-react'
 
 const Navbar = () => {
 	const { user, logoutUser } = useAuthContext()
 	const { cart } = useCartContext()
 	const [category, setCategory] = useState([])
-	const [input, setInput] = useState("")
+	const [input, setInput] = useState('')
 	const [results, setResults] = useState([])
 	// const [isDrawerOpen, setDrawerOpen] = useState(false)
 
- 
 	useEffect(() => {
-		apiClient.get('/category/')
-		.then((res) => setCategory(res.data.results))
+		apiClient.get('/category/').then((res) => setCategory(res.data.results))
 	}, [])
 
 	const fetchData = debounce((value) => {
-		apiClient
-			.get(`/products/?search=${value}`)
-			.then((res) => setResults(res.data.results)) 			
-	}, 300) 
+		apiClient.get(`/products/?search=${value}`).then((res) => setResults(res.data.results))
+	}, 300)
 
 	const handleChange = (e) => {
-		const value = e.target.value			
+		const value = e.target.value
 		setInput(value)
 		fetchData(value)
-		setResults([])	
+		setResults([])
 	}
 
 	return (
 		<div className="navbar bg-base-100 shadow-sm">
+			
 			<div className="navbar-start">
 				<div className="navbar-center">
 					<Link
@@ -49,8 +46,7 @@ const Navbar = () => {
 				<div className="dropdown dropdown-hover">
 					<div
 						tabIndex={0}
-						role="button"
-						className="btn m-1 flex items-center gap-1"
+						className="m-1 flex items-center gap-1"
 					>
 						<span className="flex items-center">Category</span>
 						<ChevronDown
@@ -186,7 +182,7 @@ const Navbar = () => {
 									<span className="text-primary">
 										Subtotal: ${cart?.total_price || 0}
 									</span>
-									
+
 									<div className="card-actions">
 										<a href="/dashboard/cart">
 											<button className="btn btn-primary btn-block">
@@ -251,6 +247,8 @@ const Navbar = () => {
 					</div>
 				)}
 			</div>
+
+
 		</div>
 	)
 }

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import AuthApiClient from '../services/auth-api-client'
+import { useNavigate } from 'react-router'
 
 const ShowCategory = () => {
 	const [category, setcategory] = useState([])
 	const [isloading, setloading] = useState(false)
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const fetchCategories = async () => {
@@ -18,10 +20,14 @@ const ShowCategory = () => {
 		fetchCategories()
 	}, [])
 
+	const EditCategory = (id) => {
+		navigate(`/edit-category/${id}`)
+	}
+
 	const deleteProduct = async (id) => {
 		setloading(true)
 		try {
-			await AuthApiClient.delete(`/category/${id}/`)			
+			await AuthApiClient.delete(`/category/${id}/`)
 			setcategory((data) => data.filter((category) => category.id !== id))
 			alert('Product delete successfull')
 		} catch (error) {
@@ -41,6 +47,7 @@ const ShowCategory = () => {
 							<th>NO.</th>
 							<th>Category</th>
 							<th>ID</th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					{category.length === 0 ? (
@@ -55,6 +62,12 @@ const ShowCategory = () => {
 									<td>{cat.name}</td>
 									<td>{cat.id}</td>
 									<td>
+										<button
+											onClick={() => EditCategory(cat.id)}
+											className="btn btn-warning text-black m-1"
+										>
+											Edit
+										</button>
 										<button
 											onClick={() => deleteProduct(cat.id)}
 											className="btn btn-error text-white m-1"

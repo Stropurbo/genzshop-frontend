@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import AuthApiClient from '../services/auth-api-client'
+import { useNavigate } from 'react-router'
 
 const AdminProduct = () => {
 	const [product, setProdcut] = useState([])
 	const [isloading, setloading] = useState(false)
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		const fetchAllProducts = async () => {
@@ -14,7 +16,7 @@ const AdminProduct = () => {
 				try {
 					const res = await AuthApiClient.get(url)
 					allProducts = [...allProducts, ...res.data.results]
-					url = res.data.next 
+					url = res.data.next
 				} catch (error) {
 					console.error('Failed to fetch products:', error)
 					break
@@ -26,8 +28,6 @@ const AdminProduct = () => {
 
 		fetchAllProducts()
 	}, [])
-	
-
 
 	const deleteProduct = async (id) => {
 		setloading(true)
@@ -43,6 +43,10 @@ const AdminProduct = () => {
 		}
 	}
 
+	const handleEdit = (id) => {
+		navigate(`/products/${id}/`)
+	}
+
 	return (
 		<div className="min-h-screen p-4 overflow-auto">
 			<div className="overflow-x-auto">
@@ -53,7 +57,7 @@ const AdminProduct = () => {
 							<th>Product Name</th>
 							<th>Category</th>
 							<th>Price</th>
-							<th></th>
+							<th>Action</th>
 						</tr>
 					</thead>
 					{product.length === 0 ? (
@@ -69,6 +73,13 @@ const AdminProduct = () => {
 									<td>{product.category_details.name}</td>
 									<td>{product.price}</td>
 									<td>
+										<button
+											onClick={() => handleEdit(product.id)}
+											className="btn btn-warning text-black m-1"
+										>
+											Edit
+										</button>
+
 										<button
 											onClick={() => deleteProduct(product.id)}
 											className="btn btn-error text-white m-1"

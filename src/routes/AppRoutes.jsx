@@ -32,6 +32,8 @@ import AllBlogView from '../pages/AllBlogView'
 import ViewBlog from '../pages/ViewBlog'
 import EditBlog from '../pages/EditBlog'
 import SubscriberList from '../pages/SubscriberList'
+import EditProduct from '../pages/EditProduct'
+import EditCategory from '../pages/EditCategory'
 
 const AppRoutes = () => {
 	return (
@@ -77,6 +79,15 @@ const AppRoutes = () => {
 					<Route
 						path="/edit-blog/:id"
 						element={<EditBlog />}
+					/>
+
+					<Route
+						path="products/:id"
+						element={<EditProduct />}
+					/>
+					<Route
+						path="edit-category/:id"
+						element={<EditCategory />}
 					/>
 
 					<Route
@@ -164,6 +175,7 @@ const AppRoutes = () => {
 						path="admin/products"
 						element={<AdminProduct />}
 					/>
+
 					<Route
 						path="admin/categroy"
 						element={<ShowCategory />}

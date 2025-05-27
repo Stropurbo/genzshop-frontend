@@ -62,7 +62,7 @@ const ProductDetail = () => {
 							: `$${product.price}`}						
 
 						<span className="text-sm ml-2 text-gray-500">
-							{/* {product.price_with_tax} (incl. tax) */}
+							{product.price_with_tax} (incl. tax)
 						</span>
 					</p>					
 

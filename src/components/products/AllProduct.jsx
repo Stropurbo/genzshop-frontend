@@ -212,9 +212,11 @@ const AllProduct = () => {
 
 											<div className="flex items-center gap-3 mt-2">
 												<span className="font-bold text-lg text-black">
-													{product.discount_price > 0
+													{product.price}
+
+													{/* {product.discount_price > 0
 														? product.discount_price + ' Tk'
-														: product.price + ' Tk'}
+														: product.price + ' Tk'} */}
 												</span>
 											</div>
 										</div>
@@ -253,8 +255,8 @@ const AllProduct = () => {
 											</p>
 											<span className="font-bold text-lg text-black">
 												{product.discount_price > 0
-													? product.discount_price + ' Tk'
-													: product.price + ' Tk'}
+													? product.discount_price
+													: product.price}
 											</span>
 
 											<div className="card-actions">

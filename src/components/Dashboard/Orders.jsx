@@ -32,7 +32,7 @@ const Orders = () => {
 									<td>{order.user?.first_name || 'N/A'}</td>
 									<td>
 										<div
-											className={`badge text-sm ${
+											className={`badge text-sm transition-all duration-300 hover:font-bold hover:transition-y-6  ${
 												order.status === 'Completed'
 													? 'bg-green-500'
 													: order.status === 'Shipped'

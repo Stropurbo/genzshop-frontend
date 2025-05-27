@@ -19,7 +19,7 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 			if (res.status === 201) {
 				alert('Order Created Successfull')
 				deleteCart()
-				window.location.reload();
+				window.location.reload()
 			}
 		} catch (error) {
 			console.log('Order create error:', error.response?.data || error.message)
@@ -47,7 +47,7 @@ const CartSummary = ({ totalPrice, itemCount, cartId }) => {
 					<div className="flex justify-between">
 						<span className="text-gray-500">Estimated Tax</span>
 						<span> ${tax.toFixed(2)} </span>
-					</div>
+					</div>					
 
 					<div className="border-t border-gray-200 pt-2 mt-2">
 						<div className="flex justify-between font-medium">

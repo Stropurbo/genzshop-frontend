@@ -15,14 +15,6 @@ const EditBlog = () => {
 		setImage(file)
 	}
 
-	const handleChange = (e) => {
-		const { name, value } = e.target
-		setBlog((pre) => ({
-			...pre,
-			[name]: value,
-		}))
-	}
-
 	useEffect(() => {
 		const fetchBlog = async () => {
 			try {
@@ -34,6 +26,14 @@ const EditBlog = () => {
 		}
 		fetchBlog()
 	}, [id])
+
+	const handleChange = (e) => {
+		const { name, value } = e.target
+		setBlog((pre) => ({
+			...pre,
+			[name]: value,
+		}))
+	}
 
 	const handleSubmitNews = async (e) => {
 		e.preventDefault()
