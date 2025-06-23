@@ -2,8 +2,6 @@ import DiscountSection from '../discount/DiscountSection'
 
 const CarosolSlide = ({ title, subtitle, image, productId }) => {
 
-	
-
 
 	return (
 		<div className="flex mt-8  h-[500px] ">

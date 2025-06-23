@@ -84,8 +84,8 @@ const AllProduct = () => {
 				{/* loading */}
 				<div className="flex justify-center items-center">
 					{isloading && (
-						<div className="flex justify-center items-center">
-							<span className="loading loading-spinner loading-lg text-center m-5 "></span>
+						<div className="fixed inset-0 flex items-center justify-center bg-white/60 z-50">
+							<span className="loading loading-spinner loading-lg text-yellow-500"></span>
 						</div>
 					)}
 
@@ -98,7 +98,7 @@ const AllProduct = () => {
 
 				<div>
 					{/* sort by */}
-					<div className="flex justify-between mt-4 mb-2">
+					<div className="flex justify-between mt-4 mb-2 mr-5">
 						<div className="flex justify-start ml-5">
 							<button onClick={() => setViewMode('grid')}>
 								<Logs
@@ -131,7 +131,7 @@ const AllProduct = () => {
 
 					{/* product */}
 					<div
-						className={`grid gap-5 ${
+						className={`grid gap-5 m-5 ${
 							viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-3' : 'grid-cols-1'
 						} `}
 					>
@@ -212,7 +212,7 @@ const AllProduct = () => {
 
 											<div className="flex items-center gap-3 mt-2">
 												<span className="font-bold text-lg text-black">
-													{product.price}
+													${product.price}
 
 													{/* {product.discount_price > 0
 														? product.discount_price + ' Tk'
