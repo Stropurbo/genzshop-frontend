@@ -61,9 +61,9 @@ const AdminProduct = () => {
 						</tr>
 					</thead>
 					{product.length === 0 ? (
-						<p className="flex justify-center items-center">
-							<span className="loading loading-spinner loading-lg"></span>
-						</p>
+						<div className="fixed inset-0 flex items-center justify-center bg-white/60 z-50">
+							<span className="loading loading-spinner loading-lg text-yellow-500"></span>
+						</div>
 					) : (
 						product.map((product, index) => (
 							<tbody key={product.id}>
