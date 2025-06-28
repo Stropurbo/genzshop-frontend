@@ -34,5 +34,5 @@ This is the **frontend** of **GenzShop**, a modern and responsive e-commerce pla
    cd genzshop-frontend
 
 npm install
-npm run dev
 npm run build
+npm run dev
