@@ -39,6 +39,7 @@ const AppRoutes = () => {
 	return (
 		<div className="overflow-hidden">
 			<Routes>
+				{/* public route */}
 				<Route element={<MainLayout />}>
 					<Route
 						path="/"

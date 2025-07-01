@@ -31,14 +31,14 @@ const Navbar = () => {
 	}
 
 	return (
-		<div className="navbar bg-base-100 shadow-sm">
+		<div className="navbar bg-yellow-100 h-15 shadow-sm px-5">
 			<div className="navbar-start">
 				<div className="navbar-center">
 					<Link
 						to="/"
-						className="btn btn-ghost text-xl bg-gradient-to-br from-yellow-500 to-red-500 bg-clip-text text-transparent"
+						className="text-xl bg-gradient-to-r from-red-500  to-black bg-clip-text text-transparent  font-bold p-2"
 					>
-						GenZ
+						Gen <span className="text-3xl">Z</span>
 					</Link>
 				</div>
 
@@ -47,7 +47,7 @@ const Navbar = () => {
 						tabIndex={0}
 						className="m-1 flex items-center gap-1"
 					>
-						<span className="flex items-center">Category</span>
+						<span className="flex items-center text-black">Category</span>
 						<ChevronDown
 							size={18}
 							className="mt-1"

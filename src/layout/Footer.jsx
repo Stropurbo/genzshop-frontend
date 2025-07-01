@@ -2,8 +2,8 @@ import React from 'react'
 
 const Footer = () => {
 	return (
-		<footer className="bg-base-300">
-			<div className="footer sm:footer-horizontal bg-base-300 text-base-content p-10">
+		<footer className="bg-yellow-100">
+			<div className="footer sm:footer-horizontal text-base-content p-10">
 				<nav>
 					<h6 className="footer-title">Services</h6>
 					<a className="link link-hover">Branding</a>
@@ -60,7 +60,7 @@ const Footer = () => {
 				</nav>
 			</div>
 
-			<div className='flex justify-between ml-5 mr-5 mb-1'>
+			<div className='flex justify-between ml-10 mr-5 mb-1'>
 				<p>
 					Copyright © {new Date().getFullYear()} - All right reserved by GenZ.
 				</p>

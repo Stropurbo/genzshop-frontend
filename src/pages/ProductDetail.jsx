@@ -51,7 +51,7 @@ const ProductDetail = () => {
 				/>
 
 				<div className="flex flex-col h-full">
-					<p className="text-start text-yellow-500">
+					<p className="text-start text-yellow-600">
 						{product.category_details?.name || 'Unknown Category'}
 					</p>
 					<p className="pt-5 ml-2 text-2xl font-bold">{product.name}</p>

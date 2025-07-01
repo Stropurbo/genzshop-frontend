@@ -24,7 +24,7 @@ const Category = () => {
 
 	return (
 		<div>
-			<div className="w-full px-10 mt-10 justify-around items-center">
+			<div className="w-full px-10 mt-23 justify-around items-center">
 				{!loading && categories.length > 0 && (
 					<Swiper
 						modules={[Autoplay, Pagination, Navigation]}

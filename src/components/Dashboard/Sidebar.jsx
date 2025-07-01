@@ -59,15 +59,14 @@ const Sidebar = () => {
 				className="drawer-overlay"
 			></label>
 			<aside className="menu bg-white w-50 h-full p-4 text-base-content">
-				<div className="flex items-center gap-2 mb-6 px-2">
-					{/* <FiShoppingCart className="h-6 w-6" /> */}
-					<a
-						href="/"
-						className="text-xl font-bold"
+				<div className="flex items-center gap-2 mb-6 px-2">					
+					<Link
+						to="/"
+						className="text-xl bg-gradient-to-r from-red-500  to-black bg-clip-text text-transparent  font-bold p-2"
 					>
-						GenZ
-					</a>
-				</div>	
+						Gen <span className="text-3xl">Z</span>
+					</Link>
+				</div>
 
 				<ul className="menu menu-md gap-2">
 					{menuItems.map((item, index) => (

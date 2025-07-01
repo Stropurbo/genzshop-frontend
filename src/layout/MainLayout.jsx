@@ -5,12 +5,14 @@ import Footer from './Footer';
 
 const MainLayout = () => {
     return (
-        <>
-            <Navbar />
-            <Outlet />
-            <Footer />
-        </>
-    );
+		<>
+			<Navbar />
+			<main>
+				<Outlet />
+			</main>
+			<Footer />
+		</>
+	)
 };
 
 export default MainLayout;

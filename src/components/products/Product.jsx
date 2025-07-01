@@ -40,7 +40,7 @@ const Product = () => {
 			<div className="mx-auto px-10 bg-white">
 				<div className="flex justify-between m-5 items-center">
 					<h1 className="font-bold text-xl md:text-4xl">
-						New <span className="text-yellow-800">Product</span>
+						New <span className="text-yellow-500">Product</span>
 					</h1>
 					<Link to="/all-product">Explore</Link>
 				</div>
@@ -56,7 +56,7 @@ const Product = () => {
 				{!isloading && !error && product.length > 0 && (
 					<Swiper
 						modules={[Autoplay, Pagination, Navigation]}
-						spaceBetween={30}
+						spaceBetween={20}
 						centeredSlides={false}
 						autoplay={{
 							delay: 2500,
@@ -67,7 +67,8 @@ const Product = () => {
 						slidesPerView={1}
 						breakpoints={{
 							640: { slidesPerView: 2 },
-							1024: { slidesPerView: 3 },
+							768: { slidesPerView: 3 },
+							1024: { slidesPerView: 4 },
 						}}
 					>
 						{product.map((product) => (
@@ -91,7 +92,7 @@ const Product = () => {
 			<div className="mx-auto px-10 bg-white">
 				<div className="flex justify-between px-5 md:px-5 items-center">
 					<h1 className="font-bold text-xl md:text-4xl mt-5">
-						Top <span className="text-yellow-800">Selling</span>
+						Top <span className="text-yellow-500">Selling</span>
 					</h1>
 					<Link to="/all-product">Explore</Link>
 				</div>
@@ -99,7 +100,7 @@ const Product = () => {
 					{!isloading && !error && fashionProduct.length > 0 && (
 						<Swiper
 							modules={[Autoplay, Pagination, Navigation]}
-							spaceBetween={30}
+							spaceBetween={20}
 							centeredSlides={false}
 							autoplay={{
 								delay: 2500,
@@ -110,7 +111,8 @@ const Product = () => {
 							slidesPerView={1}
 							breakpoints={{
 								640: { slidesPerView: 2 },
-								1024: { slidesPerView: 3 },
+								768: { slidesPerView: 3 },
+								1024: { slidesPerView: 4 },
 							}}
 						>
 							{fashionProduct.map((product) => (
@@ -124,8 +126,7 @@ const Product = () => {
 						</Swiper>
 					)}
 				</div>
-			</div>		
-
+			</div>
 		</div>
 	)
 }

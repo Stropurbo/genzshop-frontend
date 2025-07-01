@@ -25,8 +25,7 @@ const Dashboard = () => {
 
 				setProdcut(productR.data.results)
 				setCategory(categoryR.data.results)
-				setOrder(orderR.data.count)
-				console.log('Total Order from dashboard', orderR.data.count)
+				setOrder(orderR.data.count)				
 			} catch (error) {
 				console.error('Failed to fetch products:', error)
 			}
