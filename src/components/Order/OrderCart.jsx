@@ -109,27 +109,36 @@ const OrderCart = ({ order, onCancel }) => {
 				</div>
 			</div>
 			<div className="p-6">
-				<div className="flex items-center font-medium justify-between text-lg">
-					<h3 className="font-medium text-lg">
+				<div className="flex items-start justify-between text-lg p-2">
+				
+					<div className="font-medium text-lg">
 						GenZ Shop <br />
-						<span className='font-normal'>Mirpur 10, Dhaka Bangladesh</span>
-					</h3>
-					<div className="text-orange-600">Order From</div>
-				</div>
-				<div className="flex flex-col items-end p-2 space-y-1 text-sm text-gray-600">
-					{customerInfo ? (
-						<>
-							<div className="flex gap-1">
-								<span>{customerInfo.first_name}</span>
-								<span>{customerInfo.last_name}</span>
-							</div>
-							<span>{customerInfo.phone_number}</span>
-							<span>{customerInfo.email}</span>
-							<span>{customerInfo.address}</span>
-						</>
-					) : (
-						<span className="text-red-500">Customer Details not found</span>
-					)}
+						<span className="font-normal text-sm text-gray-700">
+							Shop-4D-021 C1 & C2 (East Court), <br />
+							Level-4, Block-D, <br />
+							Jamuna Future Park, Dhaka
+						</span>
+					</div>
+
+					
+					<div className="text-right">
+						<p className="text-orange-600 font-semibold">Order From</p>
+						<div className="mt-1 flex flex-col items-end text-sm text-gray-600 space-y-1">
+							{customerInfo ? (
+								<>
+									<div className="flex gap-1">
+										<span>{customerInfo.first_name || 'N/A'}</span>
+										<span>{customerInfo.last_name || ''}</span>
+									</div>
+									<span>{customerInfo.phone_number || 'N/A'}</span>
+									<span>{customerInfo.email || 'N/A'}</span>
+									<span>{customerInfo.address || 'N/A'}</span>
+								</>
+							) : (
+								<span className="text-red-500">Customer Details not found</span>
+							)}
+						</div>
+					</div>
 				</div>
 
 				<OrderTable items={order.items} />
