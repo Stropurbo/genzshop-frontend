@@ -7,8 +7,6 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 
-
-
 const Category = () => {
 	const [categories, setCategories] = useState([])
 	const [loading, setLoading] = useState(false)
@@ -17,9 +15,8 @@ const Category = () => {
 		setLoading(true)
 		apiClient
 			.get('/category')
-			.then((res) => setCategories(res.data.results))			
+			.then((res) => setCategories(res.data.results))
 			.finally(() => setLoading(false))
-			
 	}, [])
 
 	return (
@@ -38,7 +35,7 @@ const Category = () => {
 						freeMode={true}
 						pagination={false}
 						navigation={false}
-						loop={false}						
+						loop={false}
 						breakpoints={{
 							320: { slidesPerView: 1 },
 							640: { slidesPerView: 2 },
@@ -47,7 +44,7 @@ const Category = () => {
 						}}
 						className="py-5"
 					>
-						{[...categories, ...categories].map((category, index) => (						
+						{[...categories, ...categories].map((category, index) => (
 							<SwiperSlide
 								key={category.id}
 								className="!w-auto"

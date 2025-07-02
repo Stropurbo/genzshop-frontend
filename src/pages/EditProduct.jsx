@@ -9,11 +9,17 @@ const EditProduct = () => {
 	const [image, setImage] = useState(null)
 	const [product, setProduct] = useState(null)
 	const [category, setCategory] = useState(null)
+	const [loading, setLoading] = useState(false)
+	const [previewImages, setPreviewImages] = useState([])
 
 	const { register, handleSubmit, reset } = useForm()
 
 	const handleImageChange = (e) => {
-		setImage(Array.from(e.target.files))
+		const files = Array.from(e.target.files)
+		setImage(files)
+
+		const previews = files.map((file) => URL.createObjectURL(file))
+		setPreviewImages(previews)
 	}
 
 	useEffect(() => {
@@ -23,17 +29,16 @@ const EditProduct = () => {
 				setProduct(res.data)
 
 				const cat = await AuthApiClient.get('/category')
-				setCategory(cat.data.results)                
-
-                reset({
+				setCategory(cat.data.results)
+				
+				reset({
 					name: res.data.name,
 					description: res.data.description,
 					price: res.data.price,
 					discount: res.data.discount,
 					stock: res.data.stock,
-					category: res.data.category,					
+					category: res.data.category,
 				})
-
 			} catch (error) {
 				console.log(error)
 			}
@@ -42,22 +47,33 @@ const EditProduct = () => {
 	}, [id, reset])
 
 	const onSubmit = async (data) => {
+		setLoading(true)
 		const formData = new FormData()
 
-		for (let key in data) {
-			formData.append(key, data[key])
+		formData.append('name', data.name)
+		formData.append('description', data.description)
+		formData.append('price', parseFloat(data.price))
+		formData.append('stock', parseInt(data.stock))
+		formData.append('category', parseInt(data.category))
+		const discountValue = parseFloat(data.discount)
+
+		if (!isNaN(discountValue)) {
+			formData.append('discount', discountValue)
 		}
 
 		if (image && image.length > 0) {
 			image.forEach((img) => formData.append('images', img))
 		}
-        
+
 		try {
 			await AuthApiClient.put(`/products/${id}/`, formData)
 			alert('Product Update Successfull')
 			navigate('/dashboard')
 		} catch (error) {
-			console.log(error)
+			console.error('❌ Error Response:', error.response?.data)
+			alert('Update failed. Check console for details.')
+		} finally {
+			setLoading(false)
 		}
 	}
 
@@ -79,7 +95,7 @@ const EditProduct = () => {
 								key={img.id}
 								src={img.image}
 								alt="Product"
-								className="w-full h-32 object-cover rounded"
+								className="w-full h-32 object-contain rounded border border-yellow-500"
 							/>
 						))}
 					</div>
@@ -93,6 +109,19 @@ const EditProduct = () => {
 					className="file-input file-input-bordered w-full"
 					onChange={handleImageChange}
 				/>
+
+				{previewImages.length > 0 && (
+					<div className="grid grid-cols-2 gap-4 mt-4">
+						{previewImages.map((img, index) => (
+							<img
+								key={index}
+								src={img}
+								alt={`Preview ${index}`}
+								className="w-full h-32 object-contain rounded border border-yellow-500"
+							/>
+						))}
+					</div>
+				)}
 
 				<div>
 					<label className="block text-sm font-medium">Product Name</label>
@@ -172,8 +201,9 @@ const EditProduct = () => {
 				<button
 					type="submit"
 					className="btn btn-primary w-full"
+					disabled={loading}
 				>
-					Update Product
+					{loading ? 'Updating...' : 'Update Product'}
 				</button>
 			</form>
 		</div>

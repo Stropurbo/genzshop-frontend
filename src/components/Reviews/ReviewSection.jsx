@@ -88,7 +88,9 @@ const ReviewSection = () => {
 				</div>
 			)}
 
-			<div className="divider"></div>
+			<div className="divider">
+				
+			</div>
 
 			{isLoading ? (
 				<div className="flex justify-center py-8">

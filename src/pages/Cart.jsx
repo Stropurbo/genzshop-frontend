@@ -70,8 +70,8 @@ const Cart = () => {
         }
     }
 
-    if(loading) return <p>Loading... </p>
-    if(!localCart) return <p>No Cart Found</p>
+    if(loading) return <p className='w-full text-center'>Loading... </p>
+    if(!localCart) return <p className="w-full text-center">No Cart Found</p>
     return (
 		<div className="container mx-auto px-4 py-0">
 			<div className="grid  grid-cols-1 md:grid-cols-2 gap-8">

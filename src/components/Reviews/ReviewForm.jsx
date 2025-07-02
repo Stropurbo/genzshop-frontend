@@ -14,7 +14,7 @@ const ReviewForm = ({ onSubmit }) => {
 
 	return (
 		<form
-			className="space-y-4 py-5"
+			className="space-y-2 py-2"
 			onSubmit={handleSubmit(onSubmit)}
 		>
 			<div>
@@ -38,7 +38,7 @@ const ReviewForm = ({ onSubmit }) => {
 				<div>
 					<textarea
 						{...register('comment', { required: true })}
-						className="textarea textarea-bordered min-h-[120px] focus:textarea-primary"
+						className="textarea textarea-bordered min-h-[100px] focus:textarea-primary"
 						placeholder="Share your experience with this product..."
 					/>
 				</div>

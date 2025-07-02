@@ -7,6 +7,7 @@ import { FaArrowLeft } from 'react-icons/fa'
 import defaultImage from '../assets/default_product.jpg'
 import ReviewSection from '../components/Reviews/ReviewSection'
 import ProductReview from './ProductReview'
+import SuggestProduct from './SuggestProduct'
 
 const ProductDetail = () => {
 	const [product, setProduct] = useState(null)
@@ -81,6 +82,9 @@ const ProductDetail = () => {
 			</div>
 
 			<ReviewSection />
+
+			<SuggestProduct />
+
 		</div>
 	)
 }

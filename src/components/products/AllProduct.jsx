@@ -213,7 +213,6 @@ const AllProduct = () => {
 											<div className="flex items-center gap-3 mt-2">
 												<span className="font-bold text-lg text-black">
 													${product.price}
-
 													{/* {product.discount_price > 0
 														? product.discount_price + ' Tk'
 														: product.price + ' Tk'} */}
@@ -243,7 +242,7 @@ const AllProduct = () => {
 														: default_image
 												}
 												alt="Product Photo"
-												className="rounded-xl h-36 transform transition-transform duration-300 group-hover:scale-125 object-cover"
+												className="rounded-xl h-36 transform transition-transform duration-300 group-hover:scale-125 object-center"
 											/>
 										</figure>
 										<div className="card-body items-center text-center">
@@ -254,6 +253,7 @@ const AllProduct = () => {
 												{product.description}
 											</p>
 											<span className="font-bold text-lg text-black">
+												$ 
 												{product.discount_price > 0
 													? product.discount_price
 													: product.price}
