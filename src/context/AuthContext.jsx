@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 
 const AuthContext = createContext()
 
-export const AuthProvider = ({children}) => {   
+export const AuthProvider = ({children}) => {  
     
     const allContext = useAuth();
     

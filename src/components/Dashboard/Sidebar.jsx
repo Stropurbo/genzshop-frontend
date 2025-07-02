@@ -58,8 +58,8 @@ const Sidebar = () => {
 				aria-label="close sidebar"
 				className="drawer-overlay"
 			></label>
-			<aside className="menu bg-white w-50 h-full p-4 text-base-content">
-				<div className="flex items-center gap-2 mb-6 px-2">					
+			<aside className="menu bg-white w-50 p-4 text-base-content h-screen">
+				<div className="flex items-center gap-2 mb-6 px-2">
 					<Link
 						to="/"
 						className="text-xl bg-gradient-to-r from-red-500  to-black bg-clip-text text-transparent  font-bold p-2"
@@ -87,7 +87,7 @@ const Sidebar = () => {
 				</ul>
 
 				<div className="mt-auto pt-6 text-xs text-base-content">
-					<div className="flex gap-3 text-xl text-black items-center h-4 ms-3 mb-3">
+					<div className="flex gap-3 text-xl text-black items-center h-4 ">
 						<BiLogOut className="h-4 w-4" />
 						<a
 							onClick={logoutUser}

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import apiClient from '../services/api-client'
+import AuthApiClient from '../services/auth-api-client'
 
 const useAuth = () => {
 	const [user, setUser] = useState(null)
@@ -39,21 +40,23 @@ const useAuth = () => {
 
 	// update user profile
 	const updateUserProfile = async (data) => {
-		setErrMsg('')
 		try {
-			await apiClient.put('/auth/users/me/', data, {
+			const response = await AuthApiClient.patch('/auth/users/me/', data, {
 				headers: {
 					Authorization: `JWT ${authToken?.access}`,
 				},
-			});
+			})
+			setUser(response.data)				
+			return { success: true, data:response.data } 
 		} catch (error) {
+			console.log('Update error response:', error.response?.data)
 			return handleAPIError(error)
 		}
 	}
+	
 
 	// password change
-	const passwordChange = async (data) => {
-		setErrMsg('')
+	const passwordChange = async (data) => {		
 		try {
 			await apiClient.post('/auth/users/set_password/', data, {
 				headers: {
@@ -67,7 +70,7 @@ const useAuth = () => {
 
 	// reset password
 	const passwordReset = async (data) => {
-		setErrMsg('')
+		
 		try {
 			await apiClient.post('/auth/users/reset_password/', data)
 			return {
@@ -81,7 +84,7 @@ const useAuth = () => {
 
 	// reset password confirm
 	const passwordResetConfirm = async (data) => {
-		setErrMsg('')
+		
 		try {
 			await apiClient.post('/auth/users/reset_password_confirm/', data)
 			return {
@@ -95,7 +98,7 @@ const useAuth = () => {
 
 	// resend activation email
 	const ResendActivationEmail = async (data) => {
-		setErrMsg('')
+		
 		try {
 			await apiClient.post('/auth/users/resend_activation/', data)
 			return {
@@ -109,13 +112,12 @@ const useAuth = () => {
 
 	// login user
 	const loginUser = async (userData) => {
-		setErrMsg('')
+		
 		try {
 			const response = await apiClient.post('/auth/jwt/create', userData)
 			setAuthToken(response.data)
 			localStorage.setItem('authTokens', JSON.stringify(response.data))
-
-			//after login fetch user
+		
 			await fetchUserProfile()
 		} catch (error) {
 			setErrMsg(error.response.data?.detail)
@@ -124,7 +126,7 @@ const useAuth = () => {
 
 	// Register user
 	const registerUser = async (userData) => {
-		setErrMsg('')
+		
 		try {
 			await apiClient.post('/auth/users/', userData)
 			return {

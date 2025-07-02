@@ -13,6 +13,7 @@ const Orders = () => {
 				<h3 className="text-2xl font-bold bg-gradient-to-br from-yellow-700 to-green-500 bg-clip-text text-transparent">
 					Recent Orders
 				</h3>
+
 				<div className="overflow-x-auto">
 					<table className="table table-zebr">
 						<thead>
@@ -33,7 +34,7 @@ const Orders = () => {
 									<td>
 										<div
 											className={`badge text-sm transition-all duration-300 hover:font-bold hover:transition-y-6  ${
-												order.status === 'Completed'
+												order.status === 'Delivered'
 													? 'bg-green-500'
 													: order.status === 'Shipped'
 													? 'bg-fuchsia-500'

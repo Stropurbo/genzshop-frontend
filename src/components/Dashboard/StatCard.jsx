@@ -4,7 +4,8 @@ const StatCard = ({ icon, title, value }) => {
 	const isImage = typeof icon === 'string'
 
 	return (
-		<div className="card bg-base-100 shadow-sm transform transition duration-300 hover:-translate-y-1 hover:shadow-md">
+		<div className="card w-32 bg-base-100 shadow-sm transform transition duration-300 hover:-translate-y-1 hover:shadow-md hover:border border-yellow-500">
+			
 			<div className="card-body p-2">
 				<div className="flex flex-col items-center gap-2">
 					<div className="h-10 w-10">
@@ -17,9 +18,9 @@ const StatCard = ({ icon, title, value }) => {
 							icon
 						)}
 					</div>
-					<h3 className="text-sm font-medium">{title}</h3>
+					<h3 className="text-sm">{title}</h3>
 				</div>
-				<p className="text-xl font-bold text-center">{value}</p>
+				<p className="text-xl text-black text-center">{value}</p>
 			</div>
 		</div>
 	)

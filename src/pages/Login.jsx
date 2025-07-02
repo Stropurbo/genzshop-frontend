@@ -1,99 +1,120 @@
-import { useForm } from "react-hook-form";
-import useAuthContext from "../hooks/useAuthContext";
-import ErrorAlert from "../components/ErrorAlert";
-import { Link, useNavigate } from "react-router";
-import { useState } from "react";
+import { useForm } from 'react-hook-form'
+import useAuthContext from '../hooks/useAuthContext'
+import ErrorAlert from '../components/ErrorAlert'
+import { Link, useNavigate } from 'react-router'
+import { useState } from 'react'
+import { DEMO_USERS } from '../config/demoCredentials'
 
 const Login = () => {
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		setValue,
+	} = useForm()
 
-    const {register, handleSubmit, formState: {errors} } = useForm()
-    const {errMsg, loginUser} = useAuthContext();
-    const navigate = useNavigate();
-    const [loading, setLoading] = useState(false)
+	const { errMsg, loginUser } = useAuthContext()
+	const navigate = useNavigate()
+	const [loading, setLoading] = useState(false)
 
-    const onSubmit = async (data) => {
-      setLoading(true)
-      try{
-       await loginUser(data);
-       navigate('/');     
-      }catch(error){
-        console.log("Login Failed",error);
-      } finally {
-        setLoading(false)
-      }
+	const onSubmit = async (data) => {
+		setLoading(true)
+		try {
+			await loginUser(data)
+			navigate('/')
+		} catch (error) {
+			console.log('Login Failed', error)
+		} finally {
+			setLoading(false)
+		}
+	}
 
-    }
+	const handleDemoLogin = (type) => {
+		const demoCredentials = DEMO_USERS[type]
 
-    return (
-        <div className="flex min-h-screen items-center justify-center px-4 py-12 bg-base-200">
-      <div className="card w-full max-w-md bg-base-100 shadow-xl">
-        <div className="card-body">
+		setValue('email', demoCredentials.email)
+		setValue('password', demoCredentials.password)
+	}
 
-          {errMsg && <ErrorAlert errormessage={errMsg} />}
+	return (
+		<div className="flex min-h-screen items-center justify-center px-4 py-12 bg-base-200">
+			<div className="card w-full max-w-md bg-base-100 shadow-xl">
+				<div className="card-body">
+					{errMsg && <ErrorAlert errormessage={errMsg} />}
 
-          <h2 className="card-title text-2xl font-bold">Sign in</h2>
-          <p className="text-base-content/70">
-            Enter your email and password to access your account
-          </p>
+					<form
+						className="space-y-4 mt-4"
+						onSubmit={handleSubmit(onSubmit)}
+					>
+						<div className="flex justify-between">
+							<h2 className="card-title text-2xl font-bold">Sign in</h2>
 
-          <form className="space-y-4 mt-4" onSubmit={handleSubmit(onSubmit)}>
-            <div className="form-control">
-              <label className="label" htmlFor="email">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="name@example.com"
-                className="input input-bordered w-full"
-                {...register("email", {required: "E-mail is required."})}
-              />
-              {errors.email && ( <span className="text-error">{errors.email.message} </span> )}
-              
-            </div>
+							<button
+								type="button"
+								className="btn btn-sm btn-outline btn-info"
+								onClick={() => handleDemoLogin('user')}
+							>
+								Demo User
+							</button>
+						</div>
 
-            <div className="form-control">
-              <label className="label" htmlFor="password">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                className="input input-bordered w-full "
-                {...register("password", {required: "Password is required."})}               
-              />
-              {errors.password && ( <span className="text-error"> {errors.password.message} </span> )}
-              
-            </div>
+						<div className="form-control">
+							<input
+								id="email"
+								type="email"
+								placeholder="Your@email.com"
+								className="input input-bordered w-full"
+								{...register('email', { required: 'E-mail is required.' })}
+							/>
+							{errors.email && (
+								<span className="text-error">{errors.email.message} </span>
+							)}
+						</div>
 
-            <button
-              type="submit"
-              className="btn btn-primary w-full"
-              disabled={loading}
-            >
-              {loading ? "Logging In" : "Login"}
-            </button>
-          </form>
+						<div className="form-control">
+							<input
+								id="password"
+								type="password"
+								placeholder="Password"
+								className="input input-bordered w-full "
+								{...register('password', { required: 'Password is required.' })}
+							/>
+							{errors.password && (
+								<span className="text-error"> {errors.password.message} </span>
+							)}
+						</div>
 
-          <div className="text-center mt-4">
-            <p className="text-base-content/70">
-              Don&apos;t have an account?{" "}
-              <a href="/register" className="link link-primary">
-                Sign up
-              </a>                          
-            </p>
-            
-            <Link to="/forget-password" className="link link-primary">Forgot Password</Link>
+						<button
+							type="submit"
+							className="btn btn-warning w-full text-black rounded-md"
+							disabled={loading}
+						>
+							{loading ? 'Logging In' : 'Login'}
+						</button>
+					</form>
 
-          
-          </div>
+					<div className="text-center mt-4">
+						<p className="text-base-content/70">
+							Don&apos;t have an account?{' '}
+							<a
+								href="/register"
+								className="link link-primary"
+							>
+								Sign up
+							</a>
+						</p>
 
+						<Link
+							to="/forget-password"
+							className="link link-primary"
+						>
+							Forgot Password
+						</Link>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
+}
 
-        </div>
-      </div>
-    </div>
-    );
-};
-
-export default Login;
+export default Login

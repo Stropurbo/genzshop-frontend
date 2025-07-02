@@ -215,10 +215,7 @@ const Navbar = () => {
 								</li>
 								<li>
 									<a href="dashboard"> Dashboard </a>
-								</li>
-								<li>
-									<a>Settings</a>
-								</li>
+								</li>								
 								<li>
 									<a onClick={logoutUser}>Logout</a>
 								</li>
