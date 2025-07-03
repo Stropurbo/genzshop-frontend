@@ -123,25 +123,22 @@ const Navbar = () => {
 						value={input}
 						onChange={handleChange}
 					/>
-					{results.length > 0 && (
-						<ul className="absolute left-0 top-full z-10 mt-1 w-full bg-white border border-gray-300 rounded-md max-h-60 overflow-y-auto shadow-md">
-							{results.map((product) => (
-								<li
-									key={product.id}
+					{results.length > 0 && input.trim() && (
+						<div className="absolute top-full mt-2 bg-white border w-full shadow z-10 rounded">
+							{results.map((item) => (
+								<Link
+									to={`/shop/${item.id}`}
+									key={item.id}
+									className="block px-4 py-2 hover:bg-gray-100"
 									onClick={() => {
 										setResults([])
 										setInput('')
 									}}
 								>
-									<Link
-										to={`/shop/${product.id}`}
-										className="block px-4 py-2 hover:bg-gray-100"
-									>
-										{product.name}
-									</Link>
-								</li>
+									{item.name}
+								</Link>
 							))}
-						</ul>
+						</div>
 					)}
 				</div>
 
