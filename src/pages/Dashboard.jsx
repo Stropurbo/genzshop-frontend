@@ -2,7 +2,6 @@ import StatCard from '../components/Dashboard/StatCard'
 import Order from '../components/Dashboard/Orders'
 import { useEffect, useState } from 'react'
 import AuthApiClient from '../services/auth-api-client'
-import { Link } from 'react-router'
 import useAuthContext from '../hooks/useAuthContext'
 import {
 	PieChart,
@@ -45,6 +44,11 @@ const Dashboard = () => {
 		{ name: 'Not Paid', value: notpaid },
 		{ name: 'Canceled', value: cancelproduct },
 	]
+	const [isClient, setIsClient] = useState(false)
+
+	useEffect(() => {
+		setIsClient(true)
+	}, [])
 
 	const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF5C8D', '#AF19FF']
 
@@ -116,56 +120,58 @@ const Dashboard = () => {
 		<div>
 			<div className="flex flex-wrap gap-4">
 				<div className="my-8 w-full bg-white p-4 rounded shadow-md">
-					<div className="flex justify-between gap-6">
-						{/* Pie Chart */}
-						<div className="w-full md:w-1/2">							
-							<ResponsiveContainer
-								width="100%"
-								height={300}
-							>
-								<PieChart>
-									<Pie
-										data={chartData}
-										dataKey="value"
-										nameKey="name"
-										cx="50%"
-										cy="50%"
-										outerRadius={100}
-										innerRadius={50}
-										label
-									>
-										{chartData.map((entry, index) => (
-											<Cell
-												key={`cell-${index}`}
-												fill={COLORS[index % COLORS.length]}
-											/>
-										))}
-									</Pie>
-									<Tooltip />
-									<Legend />
-								</PieChart>
-							</ResponsiveContainer>
-						</div>
+					{isClient && (
+						<div className="flex flex-col md:flex-row justify-between gap-6">
+							{/* Pie Chart */}
+							<div className="w-full md:w-1/2">
+								<ResponsiveContainer
+									width="100%"
+									height={300}
+								>
+									<PieChart>
+										<Pie
+											data={chartData}
+											dataKey="value"
+											nameKey="name"
+											cx="50%"
+											cy="50%"
+											outerRadius={100}
+											innerRadius={50}
+											label
+										>
+											{chartData.map((entry, index) => (
+												<Cell
+													key={`cell-${index}`}
+													fill={COLORS[index % COLORS.length]}
+												/>
+											))}
+										</Pie>
+										<Tooltip />
+										<Legend />
+									</PieChart>
+								</ResponsiveContainer>
+							</div>
 
-						{/* Bar Chart */}
-						<div className="w-full md:w-1/2">						
-							<ResponsiveContainer
-								width="100%"
-								height={300}
-							>
-								<BarChart data={chartData}>
-									<XAxis dataKey="name" />
-									<YAxis />
-									<Tooltip />
-									<Legend />
-									<Bar
-										dataKey="value"
-										fill="#8884d8"
-									/>
-								</BarChart>
-							</ResponsiveContainer>
+							{/* Bar Chart */}
+							<div className="w-full md:w-1/2">
+								<ResponsiveContainer
+									width="100%"
+									height={300}
+								>
+									<BarChart data={chartData}>
+										<XAxis dataKey="name" />
+										<YAxis />
+										<Tooltip />
+										<Legend />
+										<Bar
+											dataKey="value"
+											fill="#8884d8"
+										/>
+									</BarChart>
+								</ResponsiveContainer>
+							</div>
 						</div>
-					</div>
+					)}
 				</div>
 
 				{/* <Link to="orders">

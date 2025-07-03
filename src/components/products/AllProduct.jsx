@@ -7,6 +7,7 @@ import FilterSection from '../shop/FilterSection'
 import { Link, useNavigate, useParams } from 'react-router'
 import { ChartNoAxesGantt, EllipsisVertical, Logs, Plus } from 'lucide-react'
 import { BiHeart } from 'react-icons/bi'
+import FloatingFilter from '../../pages/FloatingFilter'
 
 const AllProduct = () => {
 	const { id } = useParams()
@@ -65,7 +66,7 @@ const AllProduct = () => {
 				{/* filter section */}
 				<div className="mt-5 flex items-center justify-start">
 					<ul className="menu text-base-content min-h-full w-72">
-						<div>
+						<FloatingFilter>
 							<FilterSection
 								priceRange={priceRange}
 								handlePriceChange={handlePriceChange}
@@ -77,7 +78,7 @@ const AllProduct = () => {
 								// sortOrder={sortOrder}
 								// handleSorting={setSortOrder}
 							/>
-						</div>
+						</FloatingFilter>
 					</ul>
 				</div>
 
@@ -253,7 +254,7 @@ const AllProduct = () => {
 												{product.description}
 											</p>
 											<span className="font-bold text-lg text-black">
-												$ 
+												$
 												{product.discount_price > 0
 													? product.discount_price
 													: product.price}
