@@ -118,10 +118,7 @@ const Dashboard = () => {
 				<div className="my-8 w-full bg-white p-4 rounded shadow-md">
 					<div className="flex justify-between gap-6">
 						{/* Pie Chart */}
-						<div className="w-full md:w-1/2">
-							<h3 className="text-lg font-semibold text-center mb-2">
-								Pie Chart
-							</h3>
+						<div className="w-full md:w-1/2">							
 							<ResponsiveContainer
 								width="100%"
 								height={300}
@@ -151,10 +148,7 @@ const Dashboard = () => {
 						</div>
 
 						{/* Bar Chart */}
-						<div className="w-full md:w-1/2">
-							<h3 className="text-lg font-semibold text-center mb-2">
-								Bar Chart
-							</h3>
+						<div className="w-full md:w-1/2">						
 							<ResponsiveContainer
 								width="100%"
 								height={300}
@@ -174,7 +168,7 @@ const Dashboard = () => {
 					</div>
 				</div>
 
-				<Link to="orders">
+				{/* <Link to="orders">
 					<StatCard
 						icon={'https://i.ibb.co/KjjrC3L4/img-icons8.png'}
 						title="Total Order"
@@ -220,7 +214,7 @@ const Dashboard = () => {
 							value={notpaid}
 						/>
 					</>
-				)}
+				)} */}
 			</div>
 
 			<Order />

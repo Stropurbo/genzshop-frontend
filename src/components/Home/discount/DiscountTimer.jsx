@@ -23,33 +23,23 @@ const DiscountTimer = () => {
     }, [])
 
     return (
-		<div>
-			<div className="flex justify-center gap-4 mt-3 text-white">
-				<div>
-					<p className="text-center text-yellow-500 text-2xl md:text-4xl font-bold">
-						{timeLeft.days}
+		<div className="flex flex-wrap justify-end mt-3 text-white">
+			{[
+				{ label: 'Days', value: timeLeft.days },
+				{ label: 'Hour', value: timeLeft.hours },
+				{ label: 'Min', value: timeLeft.minutes },
+				{ label: 'Sec', value: timeLeft.secound },
+			].map(({ label, value }) => (
+				<div
+					key={label}
+					className="flex flex-col items-center px-2"
+				>
+					<p className="text-yellow-500 text-sm sm:text-2xl md:text-3xl font-bold leading-tight">
+						{value.toString().padStart(2, '0')}
 					</p>
-					<p className="font-bold text-center">Days</p>
+					<p className="font-semibold text-xs sm:text-sm md:text-base">{label}</p>
 				</div>
-				<div>
-					<p className="text-center text-yellow-500 text-2xl md:text-4xl font-bold">
-						{timeLeft.hours}
-					</p>
-					<p className="font-bold text-center">Hour</p>
-				</div>
-				<div>
-					<p className="text-center text-yellow-500 text-2xl md:text-4xl font-bold">
-						{timeLeft.minutes}
-					</p>
-					<p className="font-bold text-center">Min</p>
-				</div>
-				<div>
-					<p className="text-center text-yellow-500 text-2xl md:text-4xl font-bold">
-						{timeLeft.secound}
-					</p>
-					<p className="font-bold text-center">Sec</p>
-				</div>
-			</div>
+			))}
 		</div>
 	)
 };

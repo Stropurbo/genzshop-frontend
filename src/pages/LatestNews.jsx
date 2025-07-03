@@ -37,18 +37,23 @@ const LatestNews = () => {
 	}
 
 	return (
-		<div className="w-full px-10 mt-10 mb-10 justify-around items-center">
-			<div className="flex justify-between items-center">
-				<h1 className="text-2xl font-bold mb-10">
-					Latest <span className="text-yellow-500">News</span>
+		<div className="w-full max-w-screen px-4 sm:px-6 md:px-10 mt-10 mb-10 space-y-10">
+			<div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+				<h1 className="text-2xl font-bold text-center sm:text-left">
+					Latest News
 				</h1>
-
-				<Link to={'/all-news'}>Explore</Link>
+				<Link
+					to="/all-news"
+					className="text-sm sm:text-base text-blue-600 hover:underline"
+				>
+					Explore
+				</Link>
 			</div>
+
 			{!loading && blog.length > 0 && (
 				<Swiper
 					modules={[Autoplay, Pagination, Navigation]}
-					spaceBetween={30}
+					spaceBetween={10}
 					centeredSlides={false}
 					autoplay={{
 						delay: 2500,
@@ -59,15 +64,15 @@ const LatestNews = () => {
 					pagination={false}
 					navigation={false}
 					breakpoints={{
-						320: { slidesPerView: 1 },
 						640: { slidesPerView: 2 },
+						768: { slidesPerView: 3 },
 						1024: { slidesPerView: 4 },
-						1280: { slidesPerView: 5 },
+						1536: { slidesPerView: 5 },
 					}}
 					className="py-5"
 				>
 					{blog.map((blog, index) => (
-						<SwiperSlide
+						<SwiperSlide	
 							key={blog.id}
 							className="!w-auto"
 						>
@@ -80,98 +85,101 @@ const LatestNews = () => {
 				</Swiper>
 			)}
 
+			{/* Subscribe Section */}
 			<div
-				className="max-w-[calc(100%-5rem)] mt-10 mx-auto flex flex-col justify-center items-center h-[200px] bg-cover"
+				className="w-full mx-auto flex flex-col justify-center items-center bg-cover bg-center text-center px-4 py-10 rounded-xl"
 				style={{
 					backgroundImage: `url('https://i.ibb.co/bgRyS6bC/Black-Orange-Modern-Indian-Food-Banner.png')`,
 				}}
 			>
-				<h1 className="text-white text-2xl font-semibold">Subscribe For Join Us!</h1>
-				<p className="text-white">Get in Touch and Get the Future Updates</p>
-				<div className="join p-2">
-					<div>
-						<label className="input validator join-item">
-							<svg
-								className="h-[1em] opacity-50"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
+				<h1 className="text-white text-xl sm:text-2xl font-semibold mb-1">
+					Subscribe For Join Us!
+				</h1>
+				<p className="text-white text-sm sm:text-base mb-4">
+					Get in Touch and Get the Future Updates
+				</p>
+
+				<div className="join flex flex-col sm:flex-row items-center gap-3">
+					<label className="input validator join-item flex items-center gap-2 px-3 py-2 rounded-md bg-white text-black">
+						<svg
+							className="h-5 w-5 opacity-50"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+						>
+							<g
+								strokeLinejoin="round"
+								strokeLinecap="round"
+								strokeWidth="2.5"
+								fill="none"
+								stroke="currentColor"
 							>
-								<g
-									strokeLinejoin="round"
-									strokeLinecap="round"
-									strokeWidth="2.5"
-									fill="none"
-									stroke="currentColor"
-								>
-									<rect
-										width="20"
-										height="16"
-										x="2"
-										y="4"
-										rx="2"
-									></rect>
-									<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-								</g>
-							</svg>
-							<input
-								type="email"
-								placeholder="mail@site.com"
-								required
-							/>
-						</label>
-						<div className="validator-hint hidden">Enter valid email address</div>
-					</div>
-					<button className="btn btn-warning join-item">Join</button>
+								<rect
+									width="20"
+									height="16"
+									x="2"
+									y="4"
+									rx="2"
+								></rect>
+								<path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+							</g>
+						</svg>
+						<input
+							type="email"
+							placeholder="mail@site.com"
+							className="bg-transparent outline-none w-full"
+							required
+						/>
+					</label>
+					<button className="btn btn-warning join-item w-full sm:w-auto">Join</button>
 				</div>
 			</div>
 
-			<div>
-				<div className="w-full px-10 mt-10 justify-around items-center">
-					{!loading && category.length > 0 && (
-						<Swiper
-							modules={[Autoplay, Pagination, Navigation]}
-							spaceBetween={10}
-							centeredSlides={false}
-							autoplay={{
-								delay: 0,
-								disableOnInteraction: false,
-							}}
-							speed={6000}
-							freeMode={true}
-							pagination={false}
-							navigation={false}
-							loop={false}
-							allowTouchMove={true}
-							breakpoints={{
-								320: { slidesPerView: 1 },
-								640: { slidesPerView: 2 },
-								1024: { slidesPerView: 4 },
-								1280: { slidesPerView: 5 },
-							}}
-							className="py-5"
+			{/* Category Swiper */}
+			{!loading && category.length > 0 && (
+				<Swiper
+					modules={[Autoplay, Pagination, Navigation]}
+					spaceBetween={10}
+					centeredSlides={false}
+					autoplay={{
+						delay: 0,
+						disableOnInteraction: false,
+					}}
+					speed={6000}
+					freeMode={true}
+					pagination={false}
+					navigation={false}
+					loop={false}
+					allowTouchMove={true}
+					breakpoints={{
+						320: { slidesPerView: 2 },
+						640: { slidesPerView: 3 },
+						1024: { slidesPerView: 4 },
+						1280: { slidesPerView: 5 },
+					}}
+					className="py-5"
+				>
+					{[...category, ...category].map((cat, index) => (
+						<SwiperSlide
+							key={index}
+							className="!w-auto"
 						>
-							{[...category, ...category].map((cat, index) => (
-								<SwiperSlide
-									key={index}
-									className="!w-auto"
-								>
-									<a
-										onClick={() => handleClick(cat)}
-										className="w-full flex justify-center flex-col items-center md:w-40 h-28
-												 px-2 m-2 bg-white border border-gray-200 rounded-lg p-5"
-									>
-										<img
-											src={cat.image}
-											alt={cat.name}
-											className="rounded-xl h-16 w-16"
-										/>
-									</a>
-								</SwiperSlide>
-							))}
-						</Swiper>
-					)}
-				</div>
-			</div>
+							<a
+								onClick={() => handleClick(cat)}
+								className="flex flex-col items-center justify-center px-2 m-2 bg-white border border-gray-200 rounded-lg p-4 w-28 sm:w-32 md:w-36"
+							>
+								<img
+									src={cat.image}
+									alt={cat.name}
+									className="rounded-xl h-14 w-14 object-contain"
+								/>
+								<p className="mt-2 text-sm font-medium text-center">
+									{cat.name}
+								</p>
+							</a>
+						</SwiperSlide>
+					))}
+				</Swiper>
+			)}
 		</div>
 	)
 }

@@ -52,7 +52,7 @@ const Sidebar = () => {
 	const menuItems = user.is_staff ? adminMenu : customerMenu
 
 	return (
-		<div className="drawer-side h-screen z-10 bg-white shadow-sm">
+		<div className="drawer-side min-h-screen z-10 bg-white shadow-sm">
 			<label
 				htmlFor="drawer-toggle"
 				aria-label="close sidebar"
@@ -86,9 +86,9 @@ const Sidebar = () => {
 					))}
 				</ul>
 
-				<div className="mt-auto pt-6 text-xs text-base-content">
+				<div className="mt-auto text-xs text-base-content">
 					<div className="flex gap-3 text-xl text-black items-center h-4 ">
-						<BiLogOut className="h-4 w-4" />
+						<BiLogOut className="h-4 w-4 flex items-center" />
 						<a
 							onClick={logoutUser}
 							className="cursor-pointer"
@@ -96,7 +96,7 @@ const Sidebar = () => {
 							<span>Logout</span>
 						</a>
 					</div>
-					<p className="ms-4"> © 2025 GenZ Shop</p>
+					<p className="ml-2 pt-3"> © 2025 GenZ Shop</p>
 				</div>
 			</aside>
 		</div>

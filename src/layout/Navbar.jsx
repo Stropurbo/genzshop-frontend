@@ -31,48 +31,92 @@ const Navbar = () => {
 	}
 
 	return (
-		<div className="navbar bg-yellow-100 h-15 shadow-sm px-5">
+		<div className="navbar bg-yellow-100 shadow-sm px-5">
 			<div className="navbar-start">
-				<div className="navbar-center">
-					<Link
-						to="/"
-						className="text-xl bg-gradient-to-r from-red-500  to-black bg-clip-text text-transparent  font-bold p-2"
-					>
-						Gen <span className="text-3xl">Z</span>
-					</Link>
-				</div>
-
-				<div className="dropdown dropdown-hover">
-					<div
+				<div className="dropdown">
+					<label
 						tabIndex={0}
-						className="m-1 flex items-center gap-1"
+						className="btn btn-ghost lg:hidden"
 					>
-						<span className="flex items-center text-black">Category</span>
-						<ChevronDown
-							size={18}
-							className="mt-1"
-						/>
-					</div>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							className="h-5 w-5"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M4 6h16M4 12h16M4 18h16"
+							/>
+						</svg>
+					</label>
 					<ul
 						tabIndex={0}
-						className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm"
+						className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
 					>
-						{category.map((cat) => (
-							<li key={cat.id}>
-								<Link to={`/shop/category/${cat.id}`}>{cat.name}</Link>
-							</li>
-						))}
+						<li>
+							<Link to="/shop">Products</Link>
+						</li>
+						<li tabIndex={0}>
+							<details>
+								<summary className="flex items-center gap-1 text-black cursor-pointer">
+									Category
+								</summary>
+								<ul className="p-2">
+									{category.map((cat) => (
+										<li key={cat.id}>
+											<Link to={`/shop/category/${cat.id}`}>
+												{cat.name}
+											</Link>
+										</li>
+									))}
+								</ul>
+							</details>
+						</li>
 					</ul>
 				</div>
 
-				<div className="flex gap-2 ml-2 font-bold text-gray-600">
-					<Link to={'/shop'}>Products</Link>
+				<Link
+					to="/"
+					className="text-xl bg-gradient-to-r from-red-500 to-black bg-clip-text text-transparent font-bold p-2"
+				>
+					Gen <span className="text-3xl">Z</span>
+				</Link>
+
+				<div className="hidden lg:flex">
+					<ul className="menu menu-horizontal px-1">
+						<li>
+							<Link to="/shop">Products</Link>
+						</li>
+						<li tabIndex={0}>
+							<details>
+								<summary className="flex items-center gap-1 text-black cursor-pointer">
+									Category
+								</summary>
+								<ul className="p-2 w-50">
+									{category.map((cat) => (
+										<li key={cat.id}>
+											<Link to={`/shop/category/${cat.id}`}>
+												{cat.name}
+											</Link>
+										</li>
+									))}
+								</ul>
+							</details>
+						</li>
+					</ul>
 				</div>
+				
 			</div>
 
-			<div className="navbar-end">
-				{/* seach bar */}
-				<div className="relative w-full md:w-48 mr-2">
+			{/* pc  */}
+
+			<div className="navbar-end gap-2">
+				{/* Search Bar */}
+				<div className="relative w-36 md:w-48">
 					<input
 						type="search"
 						className="input input-bordered w-full"
@@ -80,7 +124,6 @@ const Navbar = () => {
 						value={input}
 						onChange={handleChange}
 					/>
-
 					{results.length > 0 && (
 						<ul className="absolute left-0 top-full z-10 mt-1 w-full bg-white border border-gray-300 rounded-md max-h-60 overflow-y-auto shadow-md">
 							{results.map((product) => (
@@ -103,48 +146,12 @@ const Navbar = () => {
 					)}
 				</div>
 
-				{/* <label
-					onClick={() => setDrawerOpen(true)}
-					className="cursor-pointer"
-				>
-					<BiHeart className="h-5 w-5" />
-				</label> */}
-
-				{/* {isDrawerOpen && (
-					<div className="drawer drawer-end z-50">
-						<input
-							id="my-drawer-4"
-							type="checkbox"
-							className="drawer-toggle"
-							checked
-						/>
-						<div className="drawer-side transition-all duration-300 ease-in-out">
-							<label
-								htmlFor="my-drawer-4"
-								className="drawer-overlay"
-								onClick={() => setDrawerOpen(false)}
-							></label>
-							<ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-								<div className="flex justify-between font-bold text-xl pb-2 border-b border-gray-300">
-									Wishlist
-									<X onClick={ () => setDrawerOpen(false)} className='cursor-pointer'/>
-								</div>
-
-								<li>
-									<a>Wishlist Item 1</a>
-								</li>
-
-							</ul>
-						</div>
-					</div>
-				)} */}
-
 				{user ? (
-					<div className="flex">
+					<div className="flex items-center gap-2">
+						{/* Cart */}
 						<div className="dropdown dropdown-end">
-							<div
+							<label
 								tabIndex={0}
-								role="button"
 								className="btn btn-ghost btn-circle"
 							>
 								<div className="indicator">
@@ -155,24 +162,21 @@ const Navbar = () => {
 										viewBox="0 0 24 24"
 										stroke="currentColor"
 									>
-										{' '}
 										<path
 											strokeLinecap="round"
 											strokeLinejoin="round"
 											strokeWidth="2"
 											d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-										/>{' '}
+										/>
 									</svg>
 									<span className="badge badge-sm indicator-item">
-										{' '}
-										{cart?.items?.length || 0}{' '}
+										{cart?.items?.length || 0}
 									</span>
 								</div>
-							</div>
-
+							</label>
 							<div
 								tabIndex={0}
-								className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
+								className="card card-compact dropdown-content bg-base-100 z-10 mt-3 w-52 shadow"
 							>
 								<div className="card-body">
 									<span className="text-lg font-bold">
@@ -181,22 +185,21 @@ const Navbar = () => {
 									<span className="text-primary">
 										Subtotal: ${cart?.total_price || 0}
 									</span>
-
 									<div className="card-actions">
-										<a href="/dashboard/cart">
+										<Link to="/dashboard/cart">
 											<button className="btn btn-primary btn-block">
 												View cart
 											</button>
-										</a>
+										</Link>
 									</div>
 								</div>
 							</div>
 						</div>
 
+						{/* Profile */}
 						<div className="dropdown dropdown-end">
-							<div
+							<label
 								tabIndex={0}
-								role="button"
 								className="btn btn-ghost btn-circle avatar"
 							>
 								<div className="w-10 rounded-full">
@@ -205,17 +208,17 @@ const Navbar = () => {
 										src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
 									/>
 								</div>
-							</div>
+							</label>
 							<ul
 								tabIndex={0}
 								className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
 							>
 								<li>
-									<a href="profile"> Profile </a>
+									<Link to="/profile">Profile</Link>
 								</li>
 								<li>
-									<a href="dashboard"> Dashboard </a>
-								</li>								
+									<Link to="/dashboard">Dashboard</Link>
+								</li>
 								<li>
 									<a onClick={logoutUser}>Logout</a>
 								</li>
@@ -223,24 +226,12 @@ const Navbar = () => {
 						</div>
 					</div>
 				) : (
-					<div className="flex gap-2 md:ms-4">
-						<Link to="/login">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-								className="size-6"
-							>
-								<path
-									fillRule="evenodd"
-									d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-									clipRule="evenodd"
-								/>
-							</svg>
-						</Link>
-
-						{/* <Link to='/register' className="btn btn-primary">Register</Link> */}
-					</div>
+					<Link
+						to="/login"
+						className="btn btn-sm btn-outline"
+					>
+						Login
+					</Link>
 				)}
 			</div>
 		</div>

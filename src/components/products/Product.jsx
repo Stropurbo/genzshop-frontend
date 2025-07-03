@@ -36,18 +36,23 @@ const Product = () => {
 	)
 
 	return (
-		<div>
-			<div className="mx-auto px-10 bg-white">
-				<div className="flex justify-between m-5 items-center">
-					<h1 className="font-bold text-xl md:text-4xl">
-						New <span className="text-yellow-500">Product</span>
-					</h1>
-					<Link to="/all-product">Explore</Link>
+		<div className="w-full max-w-screen bg-white py-10 px-4 sm:px-6 lg:px-10 mx-auto">
+			{' '}
+			{/* Section: New Product */}
+			<section className="mb-10">
+				<div className="flex justify-between items-center mb-5">
+					<h1 className="font-bold text-xl md:text-4xl">New Product</h1>
+					<Link
+						to="/all-product"
+						className="text-blue-500 hover:underline"
+					>
+						Explore
+					</Link>
 				</div>
 
 				{isloading && (
 					<div className="flex justify-center items-center">
-						<span className="loading loading-spinner loading-lg text-center m-5 "></span>
+						<span className="loading loading-spinner loading-lg m-5"></span>
 					</div>
 				)}
 
@@ -56,12 +61,9 @@ const Product = () => {
 				{!isloading && !error && product.length > 0 && (
 					<Swiper
 						modules={[Autoplay, Pagination, Navigation]}
-						spaceBetween={20}
+						spaceBetween={10}
 						centeredSlides={false}
-						autoplay={{
-							delay: 2500,
-							disableOnInteraction: false,
-						}}
+						autoplay={{ delay: 2500, disableOnInteraction: false }}
 						pagination={false}
 						navigation={false}
 						slidesPerView={1}
@@ -69,12 +71,13 @@ const Product = () => {
 							640: { slidesPerView: 2 },
 							768: { slidesPerView: 3 },
 							1024: { slidesPerView: 4 },
+							1536: { slidesPerView: 5 },
 						}}
 					>
 						{product.map((product) => (
 							<SwiperSlide
 								key={product.id}
-								className="flex justify-center"
+								className="flex w-full justify-center"
 							>
 								<ProductItem product={product} />
 							</SwiperSlide>
@@ -83,50 +86,48 @@ const Product = () => {
 				)}
 
 				{!isloading && !error && product.length === 0 && (
-					<p className="text-center text-gray-500 font-bold ">
-						Product Not Available
-					</p>
+					<p className="text-center text-gray-500 font-bold">Product Not Available</p>
 				)}
-			</div>
+			</section>
+			{/* Section: Top Selling */}
+			<section>
+				<div className="flex justify-between items-center mb-5">
+					<h1 className="font-bold text-xl md:text-4xl mt-5">Top Selling</h1>
+					<Link
+						to="/all-product"
+						className="text-blue-500 hover:underline"
+					>
+						Explore
+					</Link>
+				</div>
 
-			<div className="mx-auto px-10 bg-white">
-				<div className="flex justify-between px-5 md:px-5 items-center">
-					<h1 className="font-bold text-xl md:text-4xl mt-5">
-						Top <span className="text-yellow-500">Selling</span>
-					</h1>
-					<Link to="/all-product">Explore</Link>
-				</div>
-				<div className="mt-5 mb-5">
-					{!isloading && !error && fashionProduct.length > 0 && (
-						<Swiper
-							modules={[Autoplay, Pagination, Navigation]}
-							spaceBetween={20}
-							centeredSlides={false}
-							autoplay={{
-								delay: 2500,
-								disableOnInteraction: false,
-							}}
-							pagination={false}
-							navigation={false}
-							slidesPerView={1}
-							breakpoints={{
-								640: { slidesPerView: 2 },
-								768: { slidesPerView: 3 },
-								1024: { slidesPerView: 4 },
-							}}
-						>
-							{fashionProduct.map((product) => (
-								<SwiperSlide
-									key={product.id}
-									className="flex"
-								>
-									<ProductItem product={product} />
-								</SwiperSlide>
-							))}
-						</Swiper>
-					)}
-				</div>
-			</div>
+				{!isloading && !error && fashionProduct.length > 0 && (
+					<Swiper
+						modules={[Autoplay, Pagination, Navigation]}
+						spaceBetween={10}
+						centeredSlides={false}
+						autoplay={{ delay: 2500, disableOnInteraction: false }}
+						pagination={false}
+						navigation={false}
+						slidesPerView={1}
+						breakpoints={{
+							640: { slidesPerView: 2 },
+							768: { slidesPerView: 3 },
+							1024: { slidesPerView: 4 },
+							1536: { slidesPerView: 5 },
+						}}
+					>
+						{fashionProduct.map((product) => (
+							<SwiperSlide
+								key={product.id}
+								className="flex w-full justify-center"
+							>
+								<ProductItem product={product} />
+							</SwiperSlide>
+						))}	
+					</Swiper>
+				)}
+			</section>
 		</div>
 	)
 }
