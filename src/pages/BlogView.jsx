@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import defaultImage from '../assets/default_product.jpg'
 import apiClient from '../services/api-client'
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 
 const BlogView = () => {
 	const [myblog, setblog] = useState([])
@@ -26,29 +26,59 @@ const BlogView = () => {
 	if (!myblog) return <div>Blog Not Found...</div>
 
 	return (
-		<div className="card bg-base-100 w-full shadow-sm py-2 border border-gray-200">
-			<figure>
+		<div className="max-w-5xl mx-auto px-4 py-10">
+			<div className="bg-white border-gray-200 rounded-xl overflow-hidden">
+				{/* Blog Image */}
 				<img
 					src={myblog.image || defaultImage}
 					alt={myblog.name}
-					className="rounded-xl h-96 mt-5"
+					className="w-full h-[400px] object-center rounded-lg"
 				/>
-			</figure>
-			<div className="card-body">
-				<p className="text-gray-500">
-					{new Date(myblog.created_at).toLocaleDateString('en-GB', {
-						month: 'long',
-						day: '2-digit',
-						year: 'numeric',
-						hour: '2-digit',
-						minute: '2-digit',
-						hour12: true,						
-					})}
-				</p>
-				<h2 className="card-title line-clamp-1 text-2xl text-start p-2">
-					{myblog.name}
-				</h2>
-				<p className="text-start mb-2 ml-2">{myblog.description}</p>
+
+				{/* Blog Content */}
+				<div className="pt-5">
+					{/* Date */}
+					<div className="flex justify-between items-center">
+						<p className="text-sm text-gray-500 mb-2">
+							{new Date(myblog.created_at).toLocaleDateString('en-GB', {
+								month: 'long',
+								day: '2-digit',
+								year: 'numeric',
+								hour: '2-digit',
+								minute: '2-digit',
+								hour12: true,
+							})}
+						</p>
+						<Link
+							to="/all-news"
+							className="text-gray-500"
+						>
+							Blog List
+						</Link>
+					</div>
+
+					{/* Title */}
+					<h1 className="text-3xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent mb-6">
+						{myblog.name}
+					</h1>
+
+					{/* Description */}
+					<div className="prose prose-lg max-w-none text-gray-800">
+						{myblog.description ? (
+							myblog.description
+								.split('\n')
+								.map((line, i) =>
+									line.trim() ? (
+										<p key={i}>{line}</p>
+									) : (
+										<br key={`br-${i}`} />
+									),
+								)
+						) : (
+							<p>No description available.</p>
+						)}
+					</div>
+				</div>
 			</div>
 		</div>
 	)

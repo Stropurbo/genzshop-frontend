@@ -14,7 +14,7 @@ const FloatingFilter = ({ children }) => {
 			if (footer && filterEl) {
 				const footerTop = footer.getBoundingClientRect().top + window.scrollY
 				const filterHeight = filterEl.offsetHeight
-				const maxTop = footerTop - filterHeight - 30 
+				const maxTop = footerTop - filterHeight - 30
 
 				const newTop = Math.min(scrollY + 100, maxTop)
 				setTop(newTop)
