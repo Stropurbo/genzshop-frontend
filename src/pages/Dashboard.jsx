@@ -16,25 +16,75 @@ import {
 	YAxis,
 } from 'recharts'
 
-const Dashboard = () => {
-	const STATUS = {
-		READY_TO_SHIP: 'Ready To Ship',
-		DELIVERED: 'Delivered',
-		SHIPPED: 'Shipped',
-		NOT_PAID: 'Not Paid',
-		CANCELED: 'Canceled',
-	}
+const STATUS = {
+	READY_TO_SHIP: 'Ready To Ship',
+	DELIVERED: 'Delivered',
+	SHIPPED: 'Shipped',
+	NOT_PAID: 'Not Paid',
+	CANCELED: 'Canceled',
+}
+
+const Dashboard = () => {	
+
+	const [delivered, setDevlivered] = useState(0)
+	const [cancelproduct, setProductCancel] = useState(0)
+	const [shippedOrder, setShipped] = useState(0)
+	const [readytoship, setReadyToShip] = useState(0)
+	const [notpaid, setnotpaid] = useState(0)
+
 
 	const [product, setProdcut] = useState([])
 	const [category, setCategory] = useState([])
 	const [orderProduct, setOrder] = useState(0)
-	const [delivered, setDevlivered] = useState([])
-	const [cancelproduct, setProductCancel] = useState([])
-	const [shippedOrder, setShipped] = useState([])
 	const { user } = useAuthContext()
 
-	const [readytoship, setReadyToShip] = useState([])
-	const [notpaid, setnotpaid] = useState([])
+	
+
+	const [isClient, setIsClient] = useState(false)
+
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			setIsClient(true)
+		}
+	}, [])
+
+	
+	useEffect(() => {
+		const fetchDashboardData = async () => {
+			try {
+				const [productRes, categoryRes, orderRes] = await Promise.all([
+					AuthApiClient.get('/products/'),
+					AuthApiClient.get('/category/'),
+					AuthApiClient.get('/orders/'),
+				])
+
+				setProdcut(productRes.data.count)
+				setCategory(categoryRes.data.results)
+				setOrder(orderRes.data.count)
+
+				const orders = orderRes.data.results
+
+				setDevlivered(
+					orders.filter((order) => order.status === STATUS.DELIVERED).length,
+				)
+				setProductCancel(
+					orders.filter((order) => order.status === STATUS.CANCELED).length,
+				)
+				setShipped(orders.filter((order) => order.status === STATUS.SHIPPED).length)
+				setReadyToShip(
+					orders.filter((order) => order.status === STATUS.READY_TO_SHIP).length,
+				)
+				setnotpaid(orders.filter((order) => order.status === STATUS.NOT_PAID).length)
+			} catch (error) {
+				console.error('Failed to fetch dashboard data:', error)
+			}
+		}
+
+		fetchDashboardData()
+	}, [])
+
+
+	const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF5C8D', '#AF19FF']
 
 	const chartData = [
 		{ name: 'Total Orders', value: orderProduct },
@@ -44,77 +94,9 @@ const Dashboard = () => {
 		{ name: 'Not Paid', value: notpaid },
 		{ name: 'Canceled', value: cancelproduct },
 	]
-	const [isClient, setIsClient] = useState(false)
 
-	useEffect(() => {
-		setIsClient(true)
-	}, [])
+	
 
-	const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF5C8D', '#AF19FF']
-
-	useEffect(
-		() => async () => {
-			try {
-				const [productR, categoryR, orderR] = await Promise.all([
-					AuthApiClient.get('/products/'),
-					AuthApiClient.get('/category/'),
-					AuthApiClient.get('/orders/'),
-				])
-
-				setProdcut(productR.data.count)
-				setCategory(categoryR.data.results)
-				setOrder(orderR.data.count)
-
-				const deliverOder = orderR.data.results.filter(
-					(order) => order.status === STATUS.DELIVERED,
-				)
-				setDevlivered(deliverOder.length)
-
-				const cancelorder = orderR.data.results.filter(
-					(order) => order.status === STATUS.CANCELED,
-				)
-				setProductCancel(cancelorder.length)
-
-				const shippedorder = orderR.data.results.filter(
-					(order) => order.status === STATUS.SHIPPED,
-				)
-				setShipped(shippedorder.length)
-
-				//ready to ship
-				const readytoship = orderR.data.results.filter(
-					(order) => order.status === STATUS.READY_TO_SHIP,
-				)
-
-				setReadyToShip(readytoship.length)
-
-				// not paid
-				const notpaidOrders = orderR.data.results.filter(
-					(order) => order.status === STATUS.NOT_PAID,
-				)
-				setnotpaid(notpaidOrders.length)
-			} catch (error) {
-				console.error('Failed to fetch products:', error)
-			}
-		},
-		[
-			STATUS.DELIVERED,
-			STATUS.CANCELED,
-			STATUS.SHIPPED,
-			STATUS.READY_TO_SHIP,
-			STATUS.NOT_PAID,
-		],
-	)
-	useEffect(
-		() => async () => {
-			try {
-				const res = await AuthApiClient.get('/category/')
-				setCategory(res.data.results)
-			} catch (error) {
-				console.error('Failed to fetch products:', error)
-			}
-		},
-		[],
-	)
 
 	return (
 		<div>
@@ -174,53 +156,53 @@ const Dashboard = () => {
 					)}
 				</div>
 
-				{/* <Link to="orders">
+				<div className="flex flex-wrap gap-4 w-full max-w-screen mb-5">
 					<StatCard
 						icon={'https://i.ibb.co/KjjrC3L4/img-icons8.png'}
-						title="Total Order"
+						title="Total Orders"
 						value={orderProduct}
 					/>
-				</Link>
 
-				{user?.is_staff && (
-					<>
-						<StatCard
-							icon={'https://i.ibb.co/CK243RYj/img-icons8.png'}
-							title="Total Product"
-							value={product}
-						/>
-						<StatCard
-							icon={'https://i.ibb.co/k6zwNRQB/img-icons8.png'}
-							title="Total Category"
-							value={category.length}
-						/>
-						<StatCard
-							icon={'https://i.ibb.co/k6XJd69Z/shipped.png'}
-							title="Total Delivered"
-							value={delivered}
-						/>
-						<StatCard
-							icon={'https://i.ibb.co/8DhYv2wV/cancel.png'}
-							title="Cancel Order"
-							value={cancelproduct}
-						/>
-						<StatCard
-							icon={'https://i.ibb.co/GfkM1jk7/fast-delivery.png'}
-							title="Shipped"
-							value={shippedOrder}
-						/>
-						<StatCard
-							icon={'https://i.ibb.co/8DvT05Rg/logistics.png'}
-							title="Ready To Ship"
-							value={readytoship}
-						/>
-						<StatCard
-							icon={'https://i.ibb.co/KxkbKX1D/no-money.png'}
-							title="Not Paid"
-							value={notpaid}
-						/>
-					</>
-				)} */}
+					{user?.is_staff && (
+						<>
+							<StatCard
+								icon={'https://i.ibb.co/CK243RYj/img-icons8.png'}
+								title="Total Products"
+								value={product}
+							/>
+							<StatCard
+								icon={'https://i.ibb.co/k6zwNRQB/img-icons8.png'}
+								title="Total Categories"
+								value={category.length}
+							/>
+							<StatCard
+								icon={'https://i.ibb.co/k6XJd69Z/shipped.png'}
+								title="Delivered"
+								value={delivered}
+							/>
+							<StatCard
+								icon={'https://i.ibb.co/GfkM1jk7/fast-delivery.png'}
+								title="Shipped"
+								value={shippedOrder}
+							/>
+							<StatCard
+								icon={'https://i.ibb.co/8DvT05Rg/logistics.png'}
+								title="Ready To Ship"
+								value={readytoship}
+							/>
+							<StatCard
+								icon={'https://i.ibb.co/KxkbKX1D/no-money.png'}
+								title="Not Paid"
+								value={notpaid}
+							/>
+							<StatCard
+								icon={'https://i.ibb.co/8DhYv2wV/cancel.png'}
+								title="Canceled Orders"
+								value={cancelproduct}
+							/>
+						</>
+					)}
+				</div>
 			</div>
 
 			<Order />
